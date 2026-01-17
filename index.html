@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TROGERISM | Digital Vault</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#050505">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAADGOJ2QEXpB_t70VeuqlwFi-gYfKwx7mWfa8GDwLKyFBi2fX1K2soM3qjW10zoVI50kpnX26HgS4Tm7s&components=hosted-buttons&disable-funding=venmo&currency=GBP"></script>
+    <style>
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+        header { background: rgba(17, 17, 17, 0.9); padding: 60px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        h1 { color: #fff; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-size: 2.2rem; }
+        .price-banner { color: #888; letter-spacing: 3px; font-size: 0.8rem; margin-top: 15px; text-transform: uppercase; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 40px auto; padding: 20px; }
+        .photo-card { background: #0c0c0c; border: 1px solid #222; padding: 20px; transition: 0.4s ease; }
+        .vault-label { color: #888; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+        .image-container { position: relative; width: 100%; aspect-ratio: 4/5; background: #111; overflow: hidden; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+        .image-container img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 1.4rem; color: rgba(255,255,255,0.15); font-weight: bold; pointer-events: none; text-transform: uppercase; letter-spacing: 6px; z-index: 10; }
+        .paypal-container { margin-top: 20px; min-height: 50px; }
+        .contact-section { padding: 80px 20px; background: #080808; border-top: 1px solid #111; }
+        .disclaimer { font-size: 0.65rem; color: #444; letter-spacing: 1px; margin-bottom: 40px; }
+        .contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #333; padding-bottom: 5px; margin: 0 20px; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+<header><h1>TROGERISM</h1><div class="price-banner">Digital Vault — £10 Per Photo</div></header>
+<div class="gallery-grid">
+    <div class="photo-card"><span class="vault-label">Vault 1</span><div class="image-container"><div class="watermark">TROGERISM</div><img src="v1.jpg"></div><div id="v1" class="paypal-container"></div></div>
+    <div class="photo-card"><span class="vault-label">Vault 2</span><div class="image-container"><div class="watermark">TROGERISM</div><img src="v2.jpg"></div><div id="v2" class="paypal-container"></div></div>
+    <div class="photo-card"><span class="vault-label">Vault 3</span><div class="image-container"><div class="watermark">TROGERISM</div><img src="v3.jpg"></div><div id="v3" class="paypal-container"></div></div>
+    <div class="photo-card"><span class="vault-label">Vault 4</span><div class="image-container"><div class="watermark">TROGERISM</div><img src="v4.jpg"></div><div id="v4" class="paypal-container"></div></div>
+    <div class="photo-card"><span class="vault-label">Vault 5</span><div class="image-container"><div class="watermark">TROGERISM</div><img src="v5.jpg"></div><div id="v5" class="paypal-container"></div></div>
+    <div class="photo-card"><span class="vault-label">Vault 6</span><div class="image-container"><div class="watermark">TROGERISM</div><img src="v6.jpg"></div><div id="v6" class="paypal-container"></div></div>
+</div>
+<section class="contact-section">
+    <div class="disclaimer">Digital assets delivered via email. All sales final.</div>
+    <a href="mailto:Trogerismphotography@yahoo.com" class="contact-link">Email</a>
+    <a href="https://instagram.com/Tomrogers81" target="_blank" class="contact-link">Instagram</a>
+</section>
+<script>
+    paypal.HostedButtons({ hostedButtonId: "FHM9PZPBSMTGE" }).render("#v1");
+    paypal.HostedButtons({ hostedButtonId: "2NCJML5A8UQVL" }).render("#v2");
+    paypal.HostedButtons({ hostedButtonId: "B7K5Q9MY6HY72" }).render("#v3");
+    paypal.HostedButtons({ hostedButtonId: "XR95V34EQ55HU" }).render("#v4");
+</script>
+</body>
+</html>
