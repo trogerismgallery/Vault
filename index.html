@@ -5,29 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trogerism Exhibition</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; text-align: center; }
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+        }
         h1 { letter-spacing: 5px; }
-        .exhibition-container { column-count: 3; column-gap: 15px; margin-top: 30px; }
-        .gallery-item { margin-bottom: 15px; break-inside: avoid; border: 1px solid #333; }
-        .gallery-item img { width: 100%; height: auto; display: block; }
         
-        /* Digital Vault Store Styling */
-        .vault-section { margin-top: 50px; padding: 40px 20px; border-top: 1px solid #333; }
-        .buy-btn { 
-            background: #fff; color: #000; padding: 20px 40px; 
-            text-decoration: none; font-weight: bold; display: inline-block; 
-            margin-top: 20px; border-radius: 5px; font-size: 1.2rem;
-            cursor: pointer; -webkit-tap-highlight-color: transparent;
+        .exhibition-container { 
+            column-count: 3; 
+            column-gap: 15px; 
+            margin-top: 30px; 
+        }
+        .gallery-item { 
+            margin-bottom: 15px; 
+            break-inside: avoid; 
+            border: 1px solid #333; 
+        }
+        .gallery-item img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
         }
 
-        /* Mobile Optimization */
+        .vault-section { 
+            margin-top: 50px; 
+            padding: 40px 20px; 
+            border-top: 1px solid #333; 
+        }
+        .buy-btn { 
+            background: #fff; 
+            color: #000; 
+            padding: 20px 40px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block; 
+            margin-top: 20px; 
+            border-radius: 5px; 
+            font-size: 1.2rem;
+        }
+
         @media (max-width: 600px) {
             .exhibition-container { column-count: 1; }
-            .gallery-item img {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
-            }
-            .buy-btn { width: 80%; padding: 20px 0; display: block; margin: 20px auto; }
+            .buy-btn { width: 90%; padding: 25px 0; }
         }
     </style>
 </head>
@@ -45,20 +68,11 @@
         </script>
     </div>
 
-    <!-- Digital Vault Store -->
     <div class="vault-section">
         <h2>DIGITAL VAULT</h2>
         <p>Purchase high-resolution assets.</p>
-        <a href="https://www.paypal.com/ncp/payment/YOUR_CODE_HERE" class="buy-btn" target="_blank" rel="noopener noreferrer">Purchase Access</a>
+        <a href="https://www.paypal.com/ncp/payment/YOUR_LINK_HERE" class="buy-btn">Purchase Access</a>
     </div>
 
 </body>
 </html>
-Important Steps for your Phone:
-Paste the code above into your GitHub index.html and commit it.
-
-Crucial Step: On your phone, the reason it might not be working is because your browser has saved the "old" page. Clear your mobile browser's cache or open your site in an "Incognito/Private" tab.
-
-Because I used target="_blank" rel="noopener noreferrer", the link is now forced to behave like a standard link that mobile browsers shouldn't block.
-
-Does this version work on your phone once you open it in a fresh/incognito tab?
