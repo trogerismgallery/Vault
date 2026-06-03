@@ -12,8 +12,12 @@
         .gallery-item img { width: 100%; height: auto; display: block; }
         
         /* Digital Vault Store Styling */
-        .vault-section { margin-top: 50px; padding: 20px; border-top: 1px solid #333; }
-        .buy-btn { background: #fff; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; display: inline-block; margin: 10px; }
+        .vault-section { margin-top: 50px; padding: 40px 20px; border-top: 1px solid #333; }
+        .buy-btn { 
+            background: #fff; color: #000; padding: 20px 40px; 
+            text-decoration: none; font-weight: bold; display: inline-block; 
+            margin-top: 20px; border-radius: 5px; font-size: 1.2rem;
+        }
 
         /* Mobile Optimization */
         @media (max-width: 600px) {
@@ -22,6 +26,7 @@
                 image-rendering: -webkit-optimize-contrast;
                 image-rendering: crisp-edges;
             }
+            .buy-btn { width: 80%; padding: 20px 0; }
         }
     </style>
 </head>
@@ -44,8 +49,7 @@
     <div class="vault-section">
         <h2>DIGITAL VAULT</h2>
         <p>Purchase high-resolution assets.</p>
-        <!-- Add your PayPal / Store buttons here -->
-        <a href="#" class="buy-btn">Purchase Access</a>
+        <a href="YOUR_LINK_HERE" class="buy-btn">Purchase Access</a>
     </div>
 
 </body>
