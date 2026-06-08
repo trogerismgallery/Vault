@@ -11,14 +11,21 @@
         h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
         .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin: 10px; display: inline-block; }
         
-        /* EXHIBITION GALLERY - FULL SIZE */
-        .exhibition-container { max-width: 1400px; margin: 40px auto; padding: 20px; column-count: 3; column-gap: 30px; }
-        .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 15px; margin-bottom: 30px; break-inside: avoid; }
-        .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .image-container img { width: 100%; height: auto; display: block; }
-        .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 2rem; letter-spacing: 10px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 10px 20px; }
+        /* CONSISTENT GRID LAYOUT */
+        .exhibition-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            max-width: 1400px; 
+            margin: 40px auto; 
+            padding: 20px; 
+        }
+        .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 10px; }
+        .image-container { position: relative; width: 100%; aspect-ratio: 3/4; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 1.2rem; letter-spacing: 5px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 5px 10px; }
         
-        /* MODAL STYLES - SCROLLABLE */
+        /* MODAL STYLES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
         .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 20px; width: 90%; max-width: 900px; height: 85vh; overflow-y: auto; margin: auto; }
         .investment-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; text-align: left; }
@@ -27,8 +34,8 @@
         .paypal-container { margin-top: 10px; min-height: 100px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; }
         
-        @media (max-width: 900px) { .exhibition-container { column-count: 2; } }
-        @media (max-width: 600px) { .exhibition-container { column-count: 1; } }
+        @media (max-width: 900px) { .exhibition-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .exhibition-container { grid-template-columns: repeat(1, 1fr); } }
     </style>
 </head>
 <body>
@@ -77,7 +84,7 @@
             gridContainer.appendChild(card);
         }
 
-        // --- Swipe Prevention Logic ---
+        // Swipe prevention
         const modals = ['investment-modal', 'vault-modal'];
         modals.forEach(id => {
             const el = document.getElementById(id);
