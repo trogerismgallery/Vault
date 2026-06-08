@@ -11,18 +11,18 @@
         h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
         .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin: 10px; display: inline-block; }
         
-        /* EXHIBITION GRID: Uniform 3/4 Aspect Ratio */
+        /* EXHIBITION GRID: Native Sizing */
         .exhibition-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1400px; margin: 40px auto; padding: 20px; }
         .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 10px; }
-        .image-container { position: relative; width: 100%; aspect-ratio: 3/4; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 1.2rem; letter-spacing: 5px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 5px 10px; }
+        .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: auto; display: block; }
+        .image-container::after { content: "TROGERISM"; position: absolute; bottom: 10px; right: 10px; color: rgba(255, 255, 255, 0.1); font-size: 0.8rem; letter-spacing: 2px; pointer-events: none; }
         
         /* MODAL STYLES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
         .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 20px; width: 90%; max-width: 900px; height: 85vh; overflow-y: auto; margin: auto; }
         
-        /* VAULT SPECIFIC FIX: Contain ensures entire image/watermark is visible */
+        /* VAULT SPECIFIC FIX */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; }
         .gallery-grid .image-container img { object-fit: contain; } 
         
@@ -107,3 +107,115 @@
         }
         window.onload = function() { renderPayPal(); };
     </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TROGERISM | Exhibition</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAADGOJ2QEXpB_t70VeuqlwFi-gYfKwx7mWfa8GDwLKyFBi2fX1K2soM3qjW10zoVI50kpnX26HgS4Tm7s&components=hosted-buttons&currency=GBP"></script>
+    <style>
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+        header { padding: 50px 20px; border-bottom: 1px solid #222; }
+        h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
+        .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin: 10px; display: inline-block; }
+        
+        /* EXHIBITION GRID: Native Sizing */
+        .exhibition-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1400px; margin: 40px auto; padding: 20px; }
+        .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 10px; }
+        .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: auto; display: block; }
+        .image-container::after { content: "TROGERISM"; position: absolute; bottom: 10px; right: 10px; color: rgba(255, 255, 255, 0.1); font-size: 0.8rem; letter-spacing: 2px; pointer-events: none; }
+        
+        /* MODAL STYLES */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+        .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 20px; width: 90%; max-width: 900px; height: 85vh; overflow-y: auto; margin: auto; }
+        
+        /* VAULT SPECIFIC FIX */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; }
+        .gallery-grid .image-container img { object-fit: contain; } 
+        
+        .investment-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; text-align: left; }
+        .inv-title { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        .inv-desc { color: #666; font-size: 0.6rem; letter-spacing: 1px; margin-top: 5px; }
+        .paypal-container { margin-top: 10px; min-height: 100px; }
+        
+        @media (max-width: 900px) { .exhibition-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .exhibition-container { grid-template-columns: repeat(1, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <div id="investment-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h2 style="font-weight:200; letter-spacing:6px; margin-bottom: 20px;">INVESTMENT</h2>
+            <div class="investment-item"><div class="inv-title">Authentic Portrait — £150</div><div class="inv-desc">1hr Session | 30 Unique Edits (60 files total: 30 Print + 30 Web)</div></div>
+            <div class="investment-item"><div class="inv-title">Brand Story — £300</div><div class="inv-desc">2.5hr Session | 80 Unique Edits (160 files total: 80 Print + 80 Web)</div></div>
+            <div class="investment-item"><div class="inv-title">Architectural — £350</div><div class="inv-desc">2hr Session | 40 Unique Edits (80 files total: 40 Print + 40 Web)</div></div>
+            <div class="investment-item"><div class="inv-title">Cinematic Doc — £550</div><div class="inv-desc">Half-Day Session | 160 Unique Edits (320 files total: 160 Print + 160 Web)</div></div>
+            <a href="mailto:Trogerismphotography@yahoo.com?subject=Booking" class="btn-style" style="display:block; margin-top:30px; background:#fff; color:#000;">Book Session</a>
+            <span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('investment-modal').style.display='none'">Close</span>
+        </div>
+    </div>
+
+    <div id="vault-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="font-weight:200; letter-spacing:6px; text-align:center;">DIGITAL VAULT</h2>
+            <div class="gallery-grid">
+                <div class="photo-card"><div class="image-container"><img src="./v1_full.jpg"></div><div id="v1" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v2_full.jpg"></div><div id="v2" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v3_full.jpg"></div><div id="v3" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v4_full.jpg"></div><div id="v4" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v5_full.jpg"></div><div id="v5" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v6_full.jpg"></div><div id="v6" class="paypal-container"></div></div>
+            </div>
+            <div style="text-align:center; padding: 20px;"><span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('vault-modal').style.display='none'">Close Vault</span></div>
+        </div>
+    </div>
+
+    <header>
+        <h1>TROGERISM</h1>
+        <button class="btn-style" onclick="document.getElementById('investment-modal').style.display='flex'">View Investment</button>
+        <button class="btn-style" onclick="document.getElementById('vault-modal').style.display='flex'">Access Vault</button>
+    </header>
+
+    <div class="exhibition-container" id="exhibition-grid"></div>
+
+    <script>
+        const gridContainer = document.getElementById('exhibition-grid');
+        for (let i = 1; i <= 36; i++) {
+            const card = document.createElement('div');
+            card.className = 'gallery-item';
+            card.innerHTML = `<div class="image-container"><img src="images/img (${i}).jpg" loading="lazy"></div>`;
+            gridContainer.appendChild(card);
+        }
+        const modals = ['investment-modal', 'vault-modal'];
+        modals.forEach(id => {
+            const el = document.getElementById(id);
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (el.style.display === 'flex') history.pushState({modal: id}, "");
+                    else if (history.state && history.state.modal === id) history.back();
+                });
+            });
+            observer.observe(el, { attributes: true, attributeFilter: ['style'] });
+        });
+        window.onpopstate = () => modals.forEach(id => document.getElementById(id).style.display = 'none');
+        const buttonData = {
+            "1": { container: "#v1", id: "FHM9PZPBSMTGE" }, "2": { container: "#v2", id: "2NCJML5A8UQVL" },
+            "3": { container: "#v3", id: "B7K5Q9MY6HY72" }, "4": { container: "#v4", id: "XR95V34EQ55HU" },
+            "5": { container: "#v5", id: "TGKL63LAC9PUU" }, "6": { container: "#v6", id: "KBJ3YUENJQMRN" }
+        };
+        function renderPayPal() {
+            if (window.paypal && window.paypal.HostedButtons) {
+                Object.keys(buttonData).forEach(key => {
+                    const btn = buttonData[key];
+                    window.paypal.HostedButtons({hostedButtonId: btn.id}).render(btn.container);
+                });
+            } else { setTimeout(renderPayPal, 500); }
+        }
+        window.onload = function() { renderPayPal(); };
+    </script>
+</body>
+</html>
