@@ -76,6 +76,26 @@
             card.innerHTML = `<div class="image-container"><img src="images/img (${i}).jpg" loading="lazy"></div>`;
             gridContainer.appendChild(card);
         }
+
+        // --- Swipe Prevention Logic ---
+        const modals = ['investment-modal', 'vault-modal'];
+        modals.forEach(id => {
+            const el = document.getElementById(id);
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (el.style.display === 'flex') {
+                        history.pushState({modal: id}, "");
+                    } else if (history.state && history.state.modal === id) {
+                        history.back();
+                    }
+                });
+            });
+            observer.observe(el, { attributes: true, attributeFilter: ['style'] });
+        });
+        window.onpopstate = () => {
+            modals.forEach(id => document.getElementById(id).style.display = 'none');
+        };
+
         const buttonData = {
             "1": { container: "#v1", id: "FHM9PZPBSMTGE" }, "2": { container: "#v2", id: "2NCJML5A8UQVL" },
             "3": { container: "#v3", id: "B7K5Q9MY6HY72" }, "4": { container: "#v4", id: "XR95V34EQ55HU" },
