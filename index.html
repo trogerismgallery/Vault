@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TROGERISM | Exhibition & Digital Vault</title>
+    <title>TROGERISM | Exhibition</title>
     <script src="https://www.paypal.com/sdk/js?client-id=BAADGOJ2QEXpB_t70VeuqlwFi-gYfKwx7mWfa8GDwLKyFBi2fX1K2soM3qjW10zoVI50kpnX26HgS4Tm7s&components=hosted-buttons&currency=GBP"></script>
     <style>
-        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
-        header { background: rgba(17, 17, 17, 0.95); padding: 50px 20px; border-bottom: 1px solid #222; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+        header { padding: 50px 20px; border-bottom: 1px solid #222; }
         h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
-        .section-heading { font-weight: 200; letter-spacing: 10px; text-transform: uppercase; font-size: 1.5rem; margin: 60px 0 20px 0; color: #fff; }
-        .divider-line { max-width: 200px; height: 1px; background: #222; margin: 40px auto; }
-        .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin-top: 20px; }
+        .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin: 10px; display: inline-block; }
         
         /* EXHIBITION GALLERY */
         .exhibition-container { max-width: 1400px; margin: 40px auto; padding: 20px; column-count: 3; column-gap: 30px; }
@@ -20,18 +18,15 @@
         .image-container img { width: 100%; height: auto; display: block; }
         .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 2rem; letter-spacing: 10px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 10px 20px; }
         
-        /* VAULT STORE */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 50px; max-width: 1400px; margin: 20px auto 40px auto; padding: 20px; }
-        .photo-card { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 25px; }
-        
-        /* MODAL */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
-        .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 40px; max-width: 420px; width: 85%; }
+        /* MODAL STYLES */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); overflow-y: auto; }
+        .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 40px; max-width: 420px; width: 85%; margin: 20px auto; }
         .investment-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; text-align: left; }
         .inv-title { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
         .inv-desc { color: #666; font-size: 0.6rem; letter-spacing: 1px; margin-top: 5px; }
         .paypal-container { margin-top: 10px; min-height: 100px; }
-
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; }
+        
         @media (max-width: 900px) { .exhibition-container { column-count: 2; } }
         @media (max-width: 600px) { .exhibition-container { column-count: 1; } }
     </style>
@@ -46,37 +41,32 @@
             <div class="investment-item"><div class="inv-title">Architectural — £350</div><div class="inv-desc">2hr Session | 40 Deliverables</div></div>
             <div class="investment-item"><div class="inv-title">Cinematic Doc — £550</div><div class="inv-desc">Half-Day | 160 Deliverables</div></div>
             <a href="mailto:Trogerismphotography@yahoo.com?subject=Booking" class="btn-style" style="display:block; margin-top:30px; background:#fff; color:#000;">Book Session</a>
-            <span class="btn-style" style="background:none; color:#555; border:none; margin-top:20px; cursor:pointer;" onclick="document.getElementById('investment-modal').style.display='none'">Close</span>
+            <span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('investment-modal').style.display='none'">Close</span>
         </div>
     </div>
 
-    <div id="success-modal" class="modal">
-        <div class="modal-content">
-            <h2 style="font-weight:200; letter-spacing:6px;">VAULT UNLOCKED</h2>
-            <a id="file-link" href="#" download class="btn-style">Download High-Res</a>
-            <br><br><span class="btn-style" style="background:none; color:#555; border:none;" onclick="document.getElementById('success-modal').style.display='none'">Close</span>
+    <div id="vault-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <h2 style="font-weight:200; letter-spacing:6px;">DIGITAL VAULT</h2>
+            <div class="gallery-grid">
+                <div class="photo-card"><div class="image-container"><img src="./v1_full.jpg"></div><div id="v1" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v2_full.jpg"></div><div id="v2" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v3_full.jpg"></div><div id="v3" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v4_full.jpg"></div><div id="v4" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v5_full.jpg"></div><div id="v5" class="paypal-container"></div></div>
+                <div class="photo-card"><div class="image-container"><img src="./v6_full.jpg"></div><div id="v6" class="paypal-container"></div></div>
+            </div>
+            <span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('vault-modal').style.display='none'">Close Vault</span>
         </div>
     </div>
 
     <header>
         <h1>TROGERISM</h1>
         <button class="btn-style" onclick="document.getElementById('investment-modal').style.display='flex'">View Investment</button>
+        <button class="btn-style" onclick="document.getElementById('vault-modal').style.display='flex'">Access Vault</button>
     </header>
 
-    <h2 class="section-heading">Visual Exhibition</h2>
     <div class="exhibition-container" id="exhibition-grid"></div>
-
-    <div class="divider-line"></div>
-
-    <h2 class="section-heading">Digital Vault Store</h2>
-    <div class="gallery-grid">
-        <div class="photo-card"><div class="image-container"><img src="./v1_full.jpg"></div><div id="v1" class="paypal-container"></div></div>
-        <div class="photo-card"><div class="image-container"><img src="./v2_full.jpg"></div><div id="v2" class="paypal-container"></div></div>
-        <div class="photo-card"><div class="image-container"><img src="./v3_full.jpg"></div><div id="v3" class="paypal-container"></div></div>
-        <div class="photo-card"><div class="image-container"><img src="./v4_full.jpg"></div><div id="v4" class="paypal-container"></div></div>
-        <div class="photo-card"><div class="image-container"><img src="./v5_full.jpg"></div><div id="v5" class="paypal-container"></div></div>
-        <div class="photo-card"><div class="image-container"><img src="./v6_full.jpg"></div><div id="v6" class="paypal-container"></div></div>
-    </div>
 
     <script>
         const gridContainer = document.getElementById('exhibition-grid');
@@ -87,23 +77,17 @@
             gridContainer.appendChild(card);
         }
         const buttonData = {
-            "1": { container: "#v1", id: "FHM9PZPBSMTGE", file: "v1_full.jpg" },
-            "2": { container: "#v2", id: "2NCJML5A8UQVL", file: "v2_full.jpg" },
-            "3": { container: "#v3", id: "B7K5Q9MY6HY72", file: "v3_full.jpg" },
-            "4": { container: "#v4", id: "XR95V34EQ55HU", file: "v4_full.jpg" },
-            "5": { container: "#v5", id: "TGKL63LAC9PUU", file: "v5_full.jpg" },
-            "6": { container: "#v6", id: "KBJ3YUENJQMRN", file: "v6_full.jpg" }
+            "1": { container: "#v1", id: "FHM9PZPBSMTGE" }, "2": { container: "#v2", id: "2NCJML5A8UQVL" },
+            "3": { container: "#v3", id: "B7K5Q9MY6HY72" }, "4": { container: "#v4", id: "XR95V34EQ55HU" },
+            "5": { container: "#v5", id: "TGKL63LAC9PUU" }, "6": { container: "#v6", id: "KBJ3YUENJQMRN" }
         };
-        function showVault(file) { document.getElementById('file-link').href = "./" + file; document.getElementById('success-modal').style.display = 'flex'; }
         function renderPayPal() {
             if (window.paypal && window.paypal.HostedButtons) {
                 Object.keys(buttonData).forEach(key => {
                     const btn = buttonData[key];
-                    window.paypal.HostedButtons({hostedButtonId: btn.id, onApprove: function() { showVault(btn.file); }}).render(btn.container);
+                    window.paypal.HostedButtons({hostedButtonId: btn.id}).render(btn.container);
                 });
             } else { setTimeout(renderPayPal, 500); }
         }
         window.onload = function() { renderPayPal(); };
     </script>
-</body>
-</html>
