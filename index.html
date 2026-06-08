@@ -14,8 +14,9 @@
         /* EXHIBITION GRID */
         .exhibition-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1400px; margin: 40px auto; padding: 20px; }
         .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 10px; }
-        .image-container { position: relative; width: 100%; aspect-ratio: 3/4; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        /* Removed aspect-ratio and object-fit to prevent zooming */
+        .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: auto; display: block; }
         .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 1.2rem; letter-spacing: 5px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 5px 10px; }
         
         /* MODAL STYLES */
@@ -40,24 +41,10 @@
     <div id="investment-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <h2 style="font-weight:200; letter-spacing:6px; margin-bottom: 20px;">INVESTMENT</h2>
-            
-            <div class="investment-item">
-                <div class="inv-title">Authentic Portrait — £150</div>
-                <div class="inv-desc">1hr Session | 30 Unique Edits (60 files total: 30 Print + 30 Web)</div>
-            </div>
-            <div class="investment-item">
-                <div class="inv-title">Brand Story — £300</div>
-                <div class="inv-desc">2.5hr Session | 80 Unique Edits (160 files total: 80 Print + 80 Web)</div>
-            </div>
-            <div class="investment-item">
-                <div class="inv-title">Architectural — £350</div>
-                <div class="inv-desc">2hr Session | 40 Unique Edits (80 files total: 40 Print + 40 Web)</div>
-            </div>
-            <div class="investment-item">
-                <div class="inv-title">Cinematic Doc — £550</div>
-                <div class="inv-desc">Half-Day Session | 160 Unique Edits (320 files total: 160 Print + 160 Web)</div>
-            </div>
-
+            <div class="investment-item"><div class="inv-title">Authentic Portrait — £150</div><div class="inv-desc">1hr Session | 30 Unique Edits (60 files total: 30 Print + 30 Web)</div></div>
+            <div class="investment-item"><div class="inv-title">Brand Story — £300</div><div class="inv-desc">2.5hr Session | 80 Unique Edits (160 files total: 80 Print + 80 Web)</div></div>
+            <div class="investment-item"><div class="inv-title">Architectural — £350</div><div class="inv-desc">2hr Session | 40 Unique Edits (80 files total: 40 Print + 40 Web)</div></div>
+            <div class="investment-item"><div class="inv-title">Cinematic Doc — £550</div><div class="inv-desc">Half-Day Session | 160 Unique Edits (320 files total: 160 Print + 160 Web)</div></div>
             <a href="mailto:Trogerismphotography@yahoo.com?subject=Booking" class="btn-style" style="display:block; margin-top:30px; background:#fff; color:#000;">Book Session</a>
             <span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('investment-modal').style.display='none'">Close</span>
         </div>
@@ -121,3 +108,5 @@
         }
         window.onload = function() { renderPayPal(); };
     </script>
+</body>
+</html>
