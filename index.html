@@ -11,19 +11,18 @@
         h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
         .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin: 10px; display: inline-block; }
         
-        /* EXHIBITION GRID */
+        /* EXHIBITION GRID: Uniform 3/4 Aspect Ratio */
         .exhibition-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1400px; margin: 40px auto; padding: 20px; }
         .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 10px; }
-        /* Removed aspect-ratio and object-fit to prevent zooming */
-        .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .image-container img { width: 100%; height: auto; display: block; }
+        .image-container { position: relative; width: 100%; aspect-ratio: 3/4; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 1.2rem; letter-spacing: 5px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 5px 10px; }
         
         /* MODAL STYLES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
         .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 20px; width: 90%; max-width: 900px; height: 85vh; overflow-y: auto; margin: auto; }
         
-        /* VAULT SPECIFIC FIX */
+        /* VAULT SPECIFIC FIX: Contain ensures entire image/watermark is visible */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; }
         .gallery-grid .image-container img { object-fit: contain; } 
         
@@ -108,5 +107,3 @@
         }
         window.onload = function() { renderPayPal(); };
     </script>
-</body>
-</html>
