@@ -7,68 +7,58 @@
     <script src="https://www.paypal.com/sdk/js?client-id=BAADGOJ2QEXpB_t70VeuqlwFi-gYfKwx7mWfa8GDwLKyFBi2fX1K2soM3qjW10zoVI50kpnX26HgS4Tm7s&components=hosted-buttons&currency=GBP"></script>
     <style>
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
-        header { background: rgba(17, 17, 17, 0.95); padding: 70px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        header { background: rgba(17, 17, 17, 0.95); padding: 70px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); }
         h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
-        .price-banner { color: #888; letter-spacing: 4px; font-size: 0.75rem; margin-top: 15px; text-transform: uppercase; opacity: 0.8; }
-        
-        .jump-to-store { display: inline-block; margin-top: 20px; color: #666; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid #222; padding-bottom: 3px; transition: 0.3s; }
-        .jump-to-store:hover { color: #fff; border-bottom-color: #fff; }
-
         .section-heading { font-weight: 200; letter-spacing: 10px; text-transform: uppercase; font-size: 1.5rem; margin: 60px 0 20px 0; color: #fff; }
         .divider-line { max-width: 200px; height: 1px; background: #222; margin: 40px auto; }
-
+        .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; display: inline-block; margin-top: 20px; }
+        
+        /* Exhibition & Vault */
         .exhibition-container { max-width: 1400px; margin: 20px auto 60px auto; padding: 20px; column-count: 3; column-gap: 30px; }
-        .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 15px; margin-bottom: 30px; break-inside: avoid; display: inline-block; width: 100%; box-sizing: border-box; }
-        .exhibition-label { color: #555; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; display: block; }
-        
+        .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 15px; margin-bottom: 30px; break-inside: avoid; width: 100%; box-sizing: border-box; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 50px; max-width: 1400px; margin: 20px auto 40px auto; padding: 20px; }
-        .photo-card { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 25px; }
-        .vault-label { color: #555; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; display: block; }
-        
         .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .image-container img { max-width: 100%; width: 100%; height: auto; object-fit: contain; display: block; }
-        .image-container::after { content: "TROGERISM"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); color: rgba(255, 255, 255, 0.12); font-size: 2rem; letter-spacing: 10px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 0.08); padding: 10px 20px; white-space: nowrap; }
+        .image-container img { width: 100%; height: auto; display: block; }
         
-        /* Investment Section Styles */
-        .investment-item { border-bottom: 1px solid #1a1a1a; padding: 30px 0; text-align: left; max-width: 700px; margin: 0 auto; }
-        .inv-title { font-size: 1.1rem; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase; }
-        .inv-desc { color: #888; font-size: 0.8rem; letter-spacing: 1px; }
-
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+        .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 40px; max-width: 420px; width: 85%; }
+        .close-btn { color: #555; font-size: 0.6rem; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; margin-top: 30px; display: block; }
+        .investment-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; text-align: left; }
+        .inv-title { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        .inv-desc { color: #666; font-size: 0.6rem; letter-spacing: 1px; margin-top: 5px; }
+        
         .paypal-container { margin-top: 10px; min-height: 150px; }
-        #success-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
-        .modal-box { border: 1px solid #333; padding: 60px 30px; background: #0a0a0a; max-width: 420px; width: 85%; }
-        .dl-btn { display: inline-block; padding: 20px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; margin-top: 25px; font-size: 0.7rem; letter-spacing: 3px; transition: 0.3s; text-transform: uppercase; }
-        .dl-btn:hover { background: #fff; color: #000; }
-        .alert-text { color: #ff3b3b; font-size: 0.7rem; letter-spacing: 2px; margin-top: 20px; text-transform: uppercase; font-weight: bold; }
-        .instruction-bar { padding: 40px 20px; border-top: 1px solid #111; color: #888; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; line-height: 1.8; }
-        .contact-section { padding: 60px 20px 40px 20px; background: #050505; border-top: 1px solid #111; }
-        .contact-link { color: #666; text-decoration: none; border-bottom: 1px solid #222; padding-bottom: 5px; margin: 0 20px; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; }
-        .contact-link:hover { color: #fff; border-bottom-color: #fff; }
-        .policy-text { color: #ff3b3b; font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; padding: 40px 20px 10px 20px; line-height: 1.8; font-weight: bold; }
-        .copyright-text { color: #444; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; padding-bottom: 60px; }
-        
-        @media (max-width: 900px) { .exhibition-container { column-count: 2; gap: 20px; } }
-        @media (max-width: 600px) { .exhibition-container { column-count: 1; padding: 10px; } h1 { font-size: 1.8rem; letter-spacing: 8px; } }
+        .contact-section { padding: 60px 20px; border-top: 1px solid #111; }
+        .contact-link { color: #666; text-decoration: none; border-bottom: 1px solid #222; padding: 0 20px 5px 20px; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; }
+        .copyright-text { color: #444; font-size: 0.55rem; padding-bottom: 60px; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-    <div id="success-modal">
-        <div class="modal-box">
-            <div style="color:#444; font-size:0.6rem; letter-spacing:4px; margin-bottom:15px;">TRANSACTION VERIFIED</div>
-            <h2 style="font-weight:200; letter-spacing:6px; margin:0 0 10px 0;">VAULT UNLOCKED</h2>
-            <p id="item-title" style="font-size:0.8rem; color:#888; letter-spacing:2px; margin-bottom: 5px;"></p>
-            <div class="alert-text">ATTENTION: DO NOT CLOSE THIS WINDOW</div>
-            <a id="file-link" href="#" download class="dl-btn">Download High-Res</a>
-            <br><br>
-            <a href="index.html" style="color:#222; font-size:0.55rem; text-decoration:none; letter-spacing:2px;">Exit Vault</a>
+    <div id="investment-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="font-weight:200; letter-spacing:6px; margin-bottom: 20px;">INVESTMENT</h2>
+            <div class="investment-item"><div class="inv-title">Authentic Portrait — £150</div><div class="inv-desc">1hr Session | 30 Deliverables</div></div>
+            <div class="investment-item"><div class="inv-title">Brand Story — £300</div><div class="inv-desc">2.5hr Session | 80 Deliverables</div></div>
+            <div class="investment-item"><div class="inv-title">Architectural — £350</div><div class="inv-desc">2hr Session | 40 Deliverables</div></div>
+            <div class="investment-item"><div class="inv-title">Cinematic Doc — £550</div><div class="inv-desc">Half-Day | 160 Deliverables</div></div>
+            <a href="mailto:Trogerismphotography@yahoo.com?subject=Booking" class="btn-style" style="display:block; margin-top:30px; background:#fff; color:#000;">Book Session</a>
+            <span class="close-btn" onclick="document.getElementById('investment-modal').style.display='none'">Close Window</span>
+        </div>
+    </div>
+
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="font-weight:200; letter-spacing:6px;">VAULT UNLOCKED</h2>
+            <a id="file-link" href="#" download class="btn-style">Download High-Res</a>
+            <br><br><a href="index.html" style="color:#222; font-size:0.55rem; text-decoration:none; letter-spacing:2px;">Exit Vault</a>
         </div>
     </div>
 
     <header>
         <h1>TROGERISM</h1>
-        <div class="price-banner">Commercial Photography & Digital Vault</div>
-        <a href="#digital-vault-store" class="jump-to-store">Skip to Purchase Vault</a>
+        <button class="btn-style" onclick="document.getElementById('investment-modal').style.display='flex'">View Investment</button>
     </header>
 
     <h2 class="section-heading">Visual Exhibition</h2>
@@ -76,35 +66,18 @@
 
     <div class="divider-line"></div>
 
-    <h2 class="section-heading" id="investment">Investment</h2>
-    <div style="color:#555; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px;">Founding Client Rate: 20% Off All Collections</div>
-    
-    <div style="padding: 0 20px;">
-        <div class="investment-item"><div class="inv-title">Authentic Portrait — £150</div><div class="inv-desc">1hr Session | 30 Deliverables | Cinematic Portraiture</div></div>
-        <div class="investment-item"><div class="inv-title">Brand Story — £300</div><div class="inv-desc">2.5hr Session | 80 Deliverables | Full Narrative</div></div>
-        <div class="investment-item"><div class="inv-title">Architectural — £350</div><div class="inv-desc">2hr Session | 40 Deliverables | Interior & Space</div></div>
-        <div class="investment-item"><div class="inv-title">Cinematic Documentary — £550</div><div class="inv-desc">Half-Day Session | 160 Deliverables | Comprehensive</div></div>
-    </div>
-
-    <div style="text-align: center; margin: 50px 0;">
-        <a href="mailto:Trogerismphotography@yahoo.com?subject=Booking Enquiry: Founding Client" style="background:#fff; color:#000; padding:20px 40px; text-decoration:none; font-size:0.7rem; font-weight:bold; letter-spacing:4px; text-transform:uppercase;">Book Your Session</a>
-    </div>
-
-    <div class="divider-line"></div>
-
     <div id="digital-vault-store">
         <h2 class="section-heading">Digital Vault Store</h2>
         <div class="gallery-grid">
-            <div class="photo-card"><span class="vault-label">Vault Sequence 01</span><div class="image-container"><img src="./v1_full.jpg"></div><div id="v1" class="paypal-container"></div></div>
-            <div class="photo-card"><span class="vault-label">Vault Sequence 02</span><div class="image-container"><img src="./v2_full.jpg"></div><div id="v2" class="paypal-container"></div></div>
-            <div class="photo-card"><span class="vault-label">Vault Sequence 03</span><div class="image-container"><img src="./v3_full.jpg"></div><div id="v3" class="paypal-container"></div></div>
-            <div class="photo-card"><span class="vault-label">Vault Sequence 04</span><div class="image-container"><img src="./v4_full.jpg"></div><div id="v4" class="paypal-container"></div></div>
-            <div class="photo-card"><span class="vault-label">Vault Sequence 05</span><div class="image-container"><img src="./v5_full.jpg"></div><div id="v5" class="paypal-container"></div></div>
-            <div class="photo-card"><span class="vault-label">Vault Sequence 06</span><div class="image-container"><img src="./v6_full.jpg"></div><div id="v6" class="paypal-container"></div></div>
+            <div class="photo-card"><div class="image-container"><img src="./v1_full.jpg"></div><div id="v1" class="paypal-container"></div></div>
+            <div class="photo-card"><div class="image-container"><img src="./v2_full.jpg"></div><div id="v2" class="paypal-container"></div></div>
+            <div class="photo-card"><div class="image-container"><img src="./v3_full.jpg"></div><div id="v3" class="paypal-container"></div></div>
+            <div class="photo-card"><div class="image-container"><img src="./v4_full.jpg"></div><div id="v4" class="paypal-container"></div></div>
+            <div class="photo-card"><div class="image-container"><img src="./v5_full.jpg"></div><div id="v5" class="paypal-container"></div></div>
+            <div class="photo-card"><div class="image-container"><img src="./v6_full.jpg"></div><div id="v6" class="paypal-container"></div></div>
         </div>
     </div>
 
-    <div class="instruction-bar">Assets provided in Ultra High-Resolution. Stay on this page after payment.</div>
     <div class="contact-section">
         <a href="https://www.instagram.com/Tomrogers1981" target="_blank" class="contact-link">Instagram</a>
         <a href="mailto:Trogerismphotography@yahoo.com" class="contact-link">Inquiries</a>
@@ -116,32 +89,25 @@
         for (let i = 1; i <= 36; i++) {
             const card = document.createElement('div');
             card.className = 'gallery-item';
-            card.innerHTML = `<span class="exhibition-label">Exhibition Frame ${i<10?'0'+i:i}</span><div class="image-container"><img src="images/img (${i}).jpg" loading="lazy"></div>`;
+            card.innerHTML = `<div class="image-container"><img src="images/img (${i}).jpg" loading="lazy"></div>`;
             gridContainer.appendChild(card);
         }
         const buttonData = {
-            "1": { container: "#v1", id: "FHM9PZPBSMTGE", title: "Sequence 01", file: "v1_full.jpg" },
-            "2": { container: "#v2", id: "2NCJML5A8UQVL", title: "Sequence 02", file: "v2_full.jpg" },
-            "3": { container: "#v3", id: "B7K5Q9MY6HY72", title: "Sequence 03", file: "v3_full.jpg" },
-            "4": { container: "#v4", id: "XR95V34EQ55HU", title: "Sequence 04", file: "v4_full.jpg" },
-            "5": { container: "#v5", id: "TGKL63LAC9PUU", title: "Sequence 05", file: "v5_full.jpg" },
-            "6": { container: "#v6", id: "KBJ3YUENJQMRN", title: "Sequence 06", file: "v6_full.jpg" }
+            "1": { container: "#v1", id: "FHM9PZPBSMTGE", file: "v1_full.jpg" },
+            "2": { container: "#v2", id: "2NCJML5A8UQVL", file: "v2_full.jpg" },
+            "3": { container: "#v3", id: "B7K5Q9MY6HY72", file: "v3_full.jpg" },
+            "4": { container: "#v4", id: "XR95V34EQ55HU", file: "v4_full.jpg" },
+            "5": { container: "#v5", id: "TGKL63LAC9PUU", file: "v5_full.jpg" },
+            "6": { container: "#v6", id: "KBJ3YUENJQMRN", file: "v6_full.jpg" }
         };
-        function showVault(itemID) {
-            const selected = buttonData[itemID];
-            document.getElementById('item-title').innerText = selected.title;
-            document.getElementById('file-link').href = "./" + selected.file;
-            document.getElementById('success-modal').style.display = 'flex';
-        }
+        function showVault(file) { document.getElementById('file-link').href = "./" + file; document.getElementById('success-modal').style.display = 'flex'; }
         function renderPayPal() {
             if (window.paypal && window.paypal.HostedButtons) {
                 Object.keys(buttonData).forEach(key => {
                     const btn = buttonData[key];
-                    window.paypal.HostedButtons({hostedButtonId: btn.id, onApprove: function(data, actions) { showVault(key); }}).render(btn.container);
+                    window.paypal.HostedButtons({hostedButtonId: btn.id, onApprove: function() { showVault(btn.file); }}).render(btn.container);
                 });
             } else { setTimeout(renderPayPal, 500); }
         }
         window.onload = function() { renderPayPal(); };
     </script>
-</body>
-</html>
