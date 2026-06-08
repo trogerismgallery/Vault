@@ -11,16 +11,16 @@
         h1 { color: #fff; letter-spacing: 14px; text-transform: uppercase; margin: 0; font-size: 2.4rem; font-weight: 200; }
         .btn-style { background:#fff; color:#000; padding:15px 30px; text-decoration:none; font-size:0.6rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; cursor: pointer; border: none; margin: 10px; display: inline-block; }
         
-        /* EXHIBITION GALLERY */
+        /* EXHIBITION GALLERY - FULL SIZE */
         .exhibition-container { max-width: 1400px; margin: 40px auto; padding: 20px; column-count: 3; column-gap: 30px; }
         .gallery-item { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 15px; margin-bottom: 30px; break-inside: avoid; }
         .image-container { position: relative; width: 100%; background: #111; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         .image-container img { width: 100%; height: auto; display: block; }
         .image-container::after { content: "TROGERISM"; position: absolute; color: rgba(255, 255, 255, 0.1); font-size: 2rem; letter-spacing: 10px; font-weight: bold; pointer-events: none; border: 2px solid rgba(255, 255, 255, 0.05); padding: 10px 20px; }
         
-        /* MODAL STYLES */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); overflow-y: auto; }
-        .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 40px; max-width: 420px; width: 85%; margin: 20px auto; }
+        /* MODAL STYLES - SCROLLABLE */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+        .modal-content { background: #0a0a0a; border: 1px solid #333; padding: 20px; width: 90%; max-width: 900px; height: 85vh; overflow-y: auto; margin: auto; }
         .investment-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; text-align: left; }
         .inv-title { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
         .inv-desc { color: #666; font-size: 0.6rem; letter-spacing: 1px; margin-top: 5px; }
@@ -34,7 +34,7 @@
 <body>
 
     <div id="investment-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 420px;">
             <h2 style="font-weight:200; letter-spacing:6px; margin-bottom: 20px;">INVESTMENT</h2>
             <div class="investment-item"><div class="inv-title">Authentic Portrait — £150</div><div class="inv-desc">1hr Session | 30 Deliverables</div></div>
             <div class="investment-item"><div class="inv-title">Brand Story — £300</div><div class="inv-desc">2.5hr Session | 80 Deliverables</div></div>
@@ -46,8 +46,8 @@
     </div>
 
     <div id="vault-modal" class="modal">
-        <div class="modal-content" style="max-width: 800px;">
-            <h2 style="font-weight:200; letter-spacing:6px;">DIGITAL VAULT</h2>
+        <div class="modal-content">
+            <h2 style="font-weight:200; letter-spacing:6px; text-align:center;">DIGITAL VAULT</h2>
             <div class="gallery-grid">
                 <div class="photo-card"><div class="image-container"><img src="./v1_full.jpg"></div><div id="v1" class="paypal-container"></div></div>
                 <div class="photo-card"><div class="image-container"><img src="./v2_full.jpg"></div><div id="v2" class="paypal-container"></div></div>
@@ -56,7 +56,7 @@
                 <div class="photo-card"><div class="image-container"><img src="./v5_full.jpg"></div><div id="v5" class="paypal-container"></div></div>
                 <div class="photo-card"><div class="image-container"><img src="./v6_full.jpg"></div><div id="v6" class="paypal-container"></div></div>
             </div>
-            <span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('vault-modal').style.display='none'">Close Vault</span>
+            <div style="text-align:center; padding: 20px;"><span class="btn-style" style="background:none; color:#555; border:none; cursor:pointer;" onclick="document.getElementById('vault-modal').style.display='none'">Close Vault</span></div>
         </div>
     </div>
 
@@ -91,3 +91,5 @@
         }
         window.onload = function() { renderPayPal(); };
     </script>
+</body>
+</html>
