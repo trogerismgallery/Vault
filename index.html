@@ -3,44 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TROGERISM | Under Construction</title>
+    <title>TROGERISM | Photography</title>
     <style>
-        body { 
-            background-color: #050505; 
-            color: #ffffff; 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            text-align: center; 
-            margin: 0; 
-            padding: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-        }
-        h1 { 
-            letter-spacing: 14px; 
-            text-transform: uppercase; 
-            font-weight: 200; 
-            margin-bottom: 20px; 
-        }
-        .notice { 
-            color: #888; 
-            font-size: 0.8rem; 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            border: 1px solid #222; 
-            padding: 40px; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #ffffff; color: #000000; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        
+        /* Facelift Header */
+        header { padding: 80px 40px; text-align: center; border-bottom: 1px solid #eee; }
+        h1 { font-size: 3rem; font-weight: 300; letter-spacing: -2px; margin-bottom: 10px; text-transform: uppercase; }
+        .location { font-size: 0.8rem; letter-spacing: 4px; color: #888; text-transform: uppercase; }
+
+        /* Gallery Facelift */
+        .gallery-container { max-width: 1200px; margin: 60px auto; padding: 0 20px; column-count: 2; column-gap: 40px; }
+        .gallery-item { margin-bottom: 40px; break-inside: avoid; }
+        .gallery-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
+        .gallery-item img:hover { opacity: 0.8; }
+        
+        footer { text-align: center; padding: 80px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+
+        @media (max-width: 768px) { .gallery-container { column-count: 1; } }
     </style>
 </head>
 <body>
 
-    <h1>TROGERISM</h1>
-    <div class="notice">
-        Site currently under construction.<br>
-        Please check back soon.
-    </div>
+    <header>
+        <h1>Tom Rogers</h1>
+        <div class="location">Bognor Regis, UK</div>
+    </header>
 
+    <div class="gallery-container" id="gallery"></div>
+
+    <footer>© 2026 Trogerism Photography</footer>
+
+    <script>
+        const imageFiles = [
+            "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
+            "candid - moment - london - souvenir - shop - street - photography - notting - hill (1 of 1).jpg",
+            "candid - moment - urban - design - o2 - arena (1 of 1).jpg",
+            "candid - moment - urban - landscape - woolwich (1 of 1).jpg",
+            "candid - moment - urban - market - documentary - notting - hill (1 of 1).jpg",
+            "candid - street - photography - urban - mural - woolwich (1 of 1).jpg",
+            "candid - street - portrait - documentary - notting - hill (1 of 1).jpg",
+            "candid - street - scene - photography - north - london (2 of 1).jpg",
+            "city - life - and - rooftop - activity - candid - photography - o2 - arena (1 of 1).jpg",
+            "coastal - contemplation - candid - seaside - photography - bognor - regis (1 of 1).jpg",
+            "countryside - serenity - documentary - style - photography - west - wittering (1 of 1).jpg",
+            "cyclist - in - motion - coastal - path - bognor - regis (1 of 1).jpg",
+            "geometric - composition - coastal - landscape - photography - bognor - regis (1 of 1).jpg",
+            "historic - cathedral - architecture - dramatic - sky - photography - chichester (1 of 1).jpg",
+            "moody - coastal - candid - photography - bognor - regis (1 of 1).jpg",
+            "parent - and - child - walking - street - documentary - photography - north - london (1 of 1).jpg",
+            "public - celebration - candid - street - photography - north - london (1 of 1).jpg",
+            "relaxing - at - the - beach - documentary - photography - west - wittering (1 of 1).jpg",
+            "seaside - architecture - candid - documentary - photography - bognor - regis (1 of 1).jpg",
+            "seaside - documentary - photography - west - wittering (1 of 1).jpg",
+            "solitary - figure - coastal - pier - bognor - regis (1 of 1).jpg",
+            "urban - basketball - court - street - photography - o2 - arena (1 of 1).jpg",
+            "urban - commute - candid - documentary - photography - o2 - arena (1 of 1).jpg",
+            "urban - crowd - documentary - photoggraphy - notting - hill (1 of 1).jpg",
+            "urban - documentary - photography - notting - hill (1 of 1).jpg",
+            "urban - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - geometric - street - photography - croydon (1 of 1).jpg",
+            "urban - landscape - viewpoint - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - lifestyle - documentary - photography - north - london (1 of 1).jpg",
+            "urban - lifestyle - photography - notting - hill (1 of 1).jpg",
+            "urban - market - scene - photography - notting - hill (1 of 1).jpg",
+            "urban - market - street - documentary - notting - hill (1 of 1).jpg",
+            "urban - mural - art - street - photography - notting - hill (1 of 1).jpg",
+            "urban - quiet - moment - street - documentary - photography - north - london (1 of 1).jpg",
+            "urban - reflection - candid - street - photography - notting - hill (1 of 1).jpg",
+            "urban - street - strider - photography - croydon (1 of 1).jpg",
+            "urban - street - style - photography - notting - hill (1 of 1).jpg",
+            "calm - waters - reflected - architecture - photography - chichester (1 of 1).jpg",
+            "urban - lifestyle - documentary - photography - north - london (2 of 1).jpg",
+            "candid - street - scene - photography - north - london (1 of 1).jpg"
+        ];
+
+        const gallery = document.getElementById('gallery');
+        imageFiles.forEach(file => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `<img src="images/${file}" alt="Trogerism Photography" loading="lazy">`;
+            gallery.appendChild(div);
+        });
+    </script>
 </body>
 </html>
