@@ -61,7 +61,7 @@
             "urban - commute - candid - documentary - photography - o2 - arena (1 of 1).jpg",
             "urban - basketball - court - street - photography - o2 - arena (1 of 1).jpg",
             "candid - moment - urban - design - o2 - arena (1 of 1).jpg",
-            "urban - crowd - documentary - photoggraphy - notting - hill (1 of 1).jpg",
+            "urban - crowd - documentary - photography - notting - hill (1 of 1).jpg",
             "urban - lifestyle - documentary - photography - north - london (1 of 1).jpg",
             "urban - lifestyle - documentary - photography - north - london (2 of 1).jpg",
             "urban - documentary - photography - notting - hill (1 of 1).jpg",
@@ -87,5 +87,8 @@
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.innerHTML = `<img src="images/${file}" alt="Trogerism Photography">`;
+            div.innerHTML = `<img src="images/${file}">`;
             gallery.appendChild(div);
+        });
+    </script>
+</body>
