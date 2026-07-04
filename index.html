@@ -45,6 +45,10 @@
     <footer>© 2026 Trogerism Photography</footer>
 
     <script>
+        // CONFIGURATION: Set your folder name here. 
+        // If they are in the same folder as index.html, leave this as "" (empty).
+        const folderPath = "images/"; 
+
         const imageFiles = [
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "coastal - contemplation - candid - seaside- photography - bognor - regis (1 of 1).jpg",
@@ -87,12 +91,11 @@
         ];
 
         const gallery = document.getElementById('gallery');
-        gallery.innerHTML = ''; // Clear previous
         imageFiles.forEach(file => {
+            const fullPath = folderPath + file;
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            // REMOVED 'images/' prefix to see if they load from the main folder
-            div.innerHTML = `<img src="${file}" alt="Trogerism Photography">`;
+            div.innerHTML = `<img src="${fullPath}" alt="Trogerism Photography" onerror="this.style.display='none'; console.error('Failed to load: ${fullPath}');">`;
             gallery.appendChild(div);
         });
     </script>
