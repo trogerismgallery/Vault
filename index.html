@@ -45,10 +45,7 @@
     <footer>© 2026 Trogerism Photography</footer>
 
     <script>
-        // CONFIGURATION: Set your folder name here. 
-        // If they are in the same folder as index.html, leave this as "" (empty).
         const folderPath = "images/"; 
-
         const imageFiles = [
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "coastal - contemplation - candid - seaside- photography - bognor - regis (1 of 1).jpg",
@@ -60,7 +57,7 @@
             "seaside - documentary - photography - west - wittering (1 of 1).jpg",
             "relaxing - at - the - beach - documentary - photography - west - wittering (1 of 1).jpg",
             "countryside - serenity - documentary - style - photography - west - wittering (1 of 1).jpg",
-            "historic - cathedral - architecture - dramatic - sky - photography - chichester (1 of 1).jpg",
+            "historic - cathedral - architecture - dramatic - sky - photography - chichester - cathedral (1 of 1).jpg",
             "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
             "urban - landscape - viewpoint - documentary - photography - woolwich (1 of 1).jpg",
             "urban - documentary - photography - woolwich (1 of 1).jpg",
@@ -92,10 +89,9 @@
 
         const gallery = document.getElementById('gallery');
         imageFiles.forEach(file => {
-            const fullPath = folderPath + file;
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.innerHTML = `<img src="${fullPath}" alt="Trogerism Photography" onerror="this.style.display='none'; console.error('Failed to load: ${fullPath}');">`;
+            div.innerHTML = `<img src="${folderPath}${file}" alt="Trogerism Photography">`;
             gallery.appendChild(div);
         });
     </script>
