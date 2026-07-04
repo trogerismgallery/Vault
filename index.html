@@ -11,9 +11,20 @@
         .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 15px; }
         .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
         
-        .about-section { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
-        .about-section h2 { font-size: 1.2rem; letter-spacing: 4px; margin-bottom: 25px; text-transform: uppercase; }
-        .about-section p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        /* Button and Toggle styles */
+        .nav-section { text-align: center; padding: 40px 20px; }
+        .about-btn { 
+            background: none; border: 1px solid #000; padding: 10px 30px; 
+            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; 
+            cursor: pointer; transition: 0.3s; 
+        }
+        .about-btn:hover { background: #000; color: #fff; }
+        
+        #about-content { 
+            max-width: 800px; margin: 0 auto; padding: 0 20px; 
+            display: none; text-align: center; margin-bottom: 40px; 
+        }
+        #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
         .gallery-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 50px auto; padding: 0 20px; }
         .gallery-item { position: relative; display: block; }
@@ -40,8 +51,11 @@
         <div class="location">Bognor Regis, UK</div>
     </header>
 
-    <section class="about-section">
-        <h2>About</h2>
+    <div class="nav-section">
+        <button class="about-btn" onclick="toggleAbout()">About Me</button>
+    </div>
+
+    <section id="about-content">
         <p>Trogerism is a philosophy of observation. It is my name, paired with the ism that defines my perspective, the idea that in every photograph, you are seeing a part of my experience, even if I remain unseen.</p>
         <p>My photography journey began during the quietude of COVID, when I started using my phone to document the places I encountered while traveling for work. That period of constant movement across the country became my training ground, I learned to adapt quickly to new environments, whether coastal landscapes, quiet towns, or the intensity of city centers.</p>
         <p>I am often drawn to the timelessness of black and white, using it to strip away the noise and focus on pure form, emotion, and the geometry of a scene. My approach is defined by spontaneity, I move through my environment scanning for those unique intersections of architecture, light, and human behavior, capturing them in the moment I see them. While I have the patience to wait for a scene to align when the shot demands it, my work is primarily a narrative driven exploration, capturing the world exactly as I observe it, one frame at a time.</p>
@@ -52,6 +66,15 @@
     <footer>© 2026 Trogerism Photography</footer>
 
     <script>
+        function toggleAbout() {
+            const content = document.getElementById('about-content');
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        }
+
         const imageFiles = [
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "coastal - contemplation - candid - seaside- photography - bognor - regis (1 of 1).jpg",
