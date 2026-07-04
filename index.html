@@ -11,13 +11,21 @@
         .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 15px; }
         .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
         
-        .gallery-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; column-count: 4; column-gap: 15px; }
-        .gallery-item { margin-bottom: 15px; break-inside: avoid; }
+        /* Grid layout ensures images flow left-to-right to preserve narrative order */
+        .gallery-container { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            max-width: 1200px; 
+            margin: 50px auto; 
+            padding: 0 20px; 
+        }
         .gallery-item img { width: 100%; height: auto; display: block; }
         
         footer { text-align: center; padding: 60px 20px; font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
-        @media (max-width: 900px) { .gallery-container { column-count: 3; } }
-        @media (max-width: 600px) { .gallery-container { column-count: 2; } }
+        
+        @media (max-width: 900px) { .gallery-container { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .gallery-container { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
@@ -83,7 +91,7 @@
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.innerHTML = `<img src="images/${file}" alt="Trogerism Photography">`;
+            div.innerHTML = `<img src="images/${file}" alt="Photography by Trogerism">`;
             gallery.appendChild(div);
         });
     </script>
