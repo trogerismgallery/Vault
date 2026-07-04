@@ -8,26 +8,29 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #ffffff; color: #000000; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
         
-        /* Facelift Header */
-        header { padding: 80px 40px; text-align: center; border-bottom: 1px solid #eee; }
-        h1 { font-size: 3rem; font-weight: 300; letter-spacing: -2px; margin-bottom: 10px; text-transform: uppercase; }
-        .location { font-size: 0.8rem; letter-spacing: 4px; color: #888; text-transform: uppercase; }
+        /* Updated Header */
+        header { padding: 60px 20px; text-align: center; border-bottom: 1px solid #eee; }
+        h1 { font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; margin-bottom: 10px; text-transform: uppercase; }
+        .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 15px; }
+        .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
 
-        /* Gallery Facelift */
-        .gallery-container { max-width: 1200px; margin: 60px auto; padding: 0 20px; column-count: 2; column-gap: 40px; }
-        .gallery-item { margin-bottom: 40px; break-inside: avoid; }
+        /* Gallery Facelift - Images adjusted to be less dominant */
+        .gallery-container { max-width: 1000px; margin: 50px auto; padding: 0 20px; column-count: 3; column-gap: 20px; }
+        .gallery-item { margin-bottom: 20px; break-inside: avoid; }
         .gallery-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
         .gallery-item img:hover { opacity: 0.8; }
         
-        footer { text-align: center; padding: 80px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+        footer { text-align: center; padding: 60px 20px; font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
 
-        @media (max-width: 768px) { .gallery-container { column-count: 1; } }
+        @media (max-width: 768px) { .gallery-container { column-count: 2; } }
+        @media (max-width: 480px) { .gallery-container { column-count: 1; } }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Tom Rogers</h1>
+        <h1>TROGERISM</h1>
+        <div class="sub-name">Tom Rogers</div>
         <div class="location">Bognor Regis, UK</div>
     </header>
 
