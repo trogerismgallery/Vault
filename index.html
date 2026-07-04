@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>TROGERISM PHOTOGRAPHY</title>
+    <!-- Favicon placeholder: Replace 'favicon.ico' with your own icon file -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #ffffff; color: #000000; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
@@ -19,22 +21,27 @@
         }
         .about-btn:hover { background: #000; color: #fff; }
         
-        #about-content { 
-            max-width: 800px; margin: 0 auto; padding: 0 20px; 
-            display: none; text-align: center; margin-bottom: 40px; 
-        }
+        #about-content { max-width: 800px; margin: 0 auto; padding: 0 20px; display: none; text-align: center; margin-bottom: 40px; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
+        /* Gallery Layout */
         .gallery-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 50px auto; padding: 0 20px; }
-        .gallery-item { position: relative; display: block; }
-        .gallery-item img { width: 100%; height: auto; display: block; }
+        .gallery-item { position: relative; display: block; cursor: pointer; }
+        .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+        .gallery-item img:hover { transform: scale(1.02); }
+
+        /* Lightbox Overlay */
+        #lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        #lightbox img { max-width: 90%; max-height: 80%; border: 2px solid #fff; }
 
         .watermark-text {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             color: rgba(255, 255, 255, 0.4); font-size: 14px; font-family: sans-serif;
             pointer-events: none; text-transform: uppercase; letter-spacing: 2px;
-            text-shadow: 0px 0px 4px rgba(0,0,0,0.3); white-space: nowrap; z-index: 1;
+            text-shadow: 0px 0px 4px rgba(0,0,0,0.3); z-index: 1;
         }
+        
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; padding: 10px 15px; cursor: pointer; display: none; font-size: 0.6rem; letter-spacing: 1px; }
         
         footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
@@ -63,6 +70,12 @@
 
     <div class="gallery-container" id="gallery"></div>
 
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Zoomed view">
+    </div>
+
+    <div id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">TOP</div>
+
     <footer>
         <p>© 2026 Trogerism Photography</p>
         <p style="margin-top: 10px;">
@@ -71,7 +84,6 @@
         </p>
     </footer>
 
-    <!-- SEO Keywords Section -->
     <div style="display:none;">
         <p>street photography documentary photography black and white photography urban lifestyle coastal photography architecture photography candid photography Canon photography narrative photography</p>
         <p>#streetphotography #documentaryphotography #bnwphotography #urbanphotography #coastalphotography #candidphotography #canonphotography #narrativephotography</p>
@@ -80,11 +92,7 @@
     <script>
         function toggleAbout() {
             const content = document.getElementById('about-content');
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-            } else {
-                content.style.display = 'block';
-            }
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
         }
 
         const imageFiles = [
@@ -132,12 +140,25 @@
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
+            div.onclick = () => openLightbox(`images/${file}`);
             div.innerHTML = `
-                <img src="images/${file}" alt="Trogerism Photography">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
                 <div class="watermark-text">© Trogerism Photography</div>
             `;
             gallery.appendChild(div);
         });
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        window.onscroll = () => {
+            document.getElementById('back-to-top').style.display = (window.scrollY > 300) ? 'block' : 'none';
+        };
     </script>
 </body>
 </html>
