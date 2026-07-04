@@ -31,18 +31,21 @@
             display: block; 
         }
 
-        /* The text-based watermark overlay */
+        /* Centered watermark overlay */
         .watermark-text {
             position: absolute;
-            bottom: 15px;
-            right: 15px;
-            color: rgba(255, 255, 255, 0.5); /* White, 50% see-through */
-            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.4); /* White, 40% see-through */
+            font-size: 14px;
             font-family: sans-serif;
             pointer-events: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0px 0px 4px rgba(0,0,0,0.5); /* Helps it show on light backgrounds */
+            letter-spacing: 2px;
+            text-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            z-index: 1;
         }
         
         footer { text-align: center; padding: 60px 20px; font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
