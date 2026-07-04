@@ -36,7 +36,8 @@
             text-shadow: 0px 0px 4px rgba(0,0,0,0.3); white-space: nowrap; z-index: 1;
         }
         
-        footer { text-align: center; padding: 60px 20px; font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+        footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
         
         @media (max-width: 900px) { .gallery-container { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 600px) { .gallery-container { grid-template-columns: repeat(2, 1fr); } }
@@ -62,7 +63,19 @@
 
     <div class="gallery-container" id="gallery"></div>
 
-    <footer>© 2026 Trogerism Photography</footer>
+    <footer>
+        <p>© 2026 Trogerism Photography</p>
+        <p style="margin-top: 10px;">
+            <a href="mailto:trogerismphotography@yahoo.com">Contact</a> | 
+            <a href="https://www.instagram.com/tomrogers1981" target="_blank">Instagram</a>
+        </p>
+    </footer>
+
+    <!-- SEO Keywords Section -->
+    <div style="display:none;">
+        <p>street photography documentary photography black and white photography urban lifestyle coastal photography architecture photography candid photography Canon photography narrative photography</p>
+        <p>#streetphotography #documentaryphotography #bnwphotography #urbanphotography #coastalphotography #candidphotography #canonphotography #narrativephotography</p>
+    </div>
 
     <script>
         function toggleAbout() {
