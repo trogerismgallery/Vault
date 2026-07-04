@@ -87,10 +87,12 @@
         ];
 
         const gallery = document.getElementById('gallery');
+        gallery.innerHTML = ''; // Clear previous
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.innerHTML = `<img src="images/${file}" alt="Trogerism Photography">`;
+            // REMOVED 'images/' prefix to see if they load from the main folder
+            div.innerHTML = `<img src="${file}" alt="Trogerism Photography">`;
             gallery.appendChild(div);
         });
     </script>
