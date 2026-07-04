@@ -45,7 +45,6 @@
     <footer>© 2026 Trogerism Photography</footer>
 
     <script>
-        const folderPath = "images/"; 
         const imageFiles = [
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "coastal - contemplation - candid - seaside- photography - bognor - regis (1 of 1).jpg",
@@ -91,7 +90,7 @@
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.innerHTML = `<img src="${folderPath}${file}" alt="Trogerism Photography">`;
+            div.innerHTML = `<img src="images/${file}" alt="Trogerism Photography">`;
             gallery.appendChild(div);
         });
     </script>
