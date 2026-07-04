@@ -4,26 +4,89 @@
     <meta charset="UTF-8">
     <title>TROGERISM PHOTOGRAPHY</title>
     <style>
-        .gallery-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .gallery-item img { width: 100%; height: auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #ffffff; color: #000000; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        header { padding: 60px 20px; text-align: center; border-bottom: 1px solid #eee; }
+        h1 { font-size: 2.2rem; font-weight: 300; letter-spacing: 6px; margin-bottom: 10px; text-transform: uppercase; }
+        .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 15px; }
+        .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
+        
+        .gallery-container { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            max-width: 1200px; 
+            margin: 50px auto; 
+            padding: 0 20px; 
+        }
+        .gallery-item img { width: 100%; height: auto; display: block; }
+        
+        footer { text-align: center; padding: 60px 20px; font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+        
+        @media (max-width: 900px) { .gallery-container { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .gallery-container { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
+
+    <header>
+        <h1>TROGERISM PHOTOGRAPHY</h1>
+        <div class="sub-name">Tom Rogers</div>
+        <div class="location">Bognor Regis, UK</div>
+    </header>
+
     <div class="gallery-container" id="gallery"></div>
+
+    <footer>© 2026 Trogerism Photography</footer>
 
     <script>
         const imageFiles = [
+            "Urban - geometric - street - photography - croydon (1 of 1).jpg",
+            "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
-            "coastal - contemplation - candid - seaside - photography - bognor - regis (1 of 1).jpg",
-            "moody - coastal - candid - photography - bognor - regis (1 of 1).jpg"
+            "candid - moment - london - souvenir - shop - street - photography - notting - hill (1 of 1).jpg",
+            "candid - moment - urban - design - o2 - arena (1 of 1).jpg",
+            "candid - moment - urban - landscape - woolwich (1 of 1).jpg",
+            "candid - moment - urban - market - documentary - notting - hill (1 of 1).jpg",
+            "candid - street - photography - urban - mural - woolwich (1 of 1).jpg",
+            "candid - street - portrait - documentary - notting - hill (1 of 1).jpg",
+            "candid - street - scene - photography - north - london (2 of 1).jpg",
+            "city - life - and - rooftop - activity - candid - photography - o2 - arena (1 of 1).jpg",
+            "coastal - contemplation - candid - seaside- photography - bognor - regis (1 of 1).jpg",
+            "countryside - serenity - documentary - style - photography - west - wittering (1 of 1).jpg",
+            "cyclist - in - motion - coastal - path - bognor - regis (1 of 1).jpg",
+            "geometric - composition - coastal - landscape- photography - bognor - regis (1 of 1).jpg",
+            "historic - cathedral - architecture - dramatic - sky - photography - chichester (1 of 1).jpg",
+            "moody - coastal - candid - photography - bognor - regis (1 of 1).jpg",
+            "parent - and - child - walking - street - documentary - photography - woolwich (1 of 1).jpg",
+            "public - celebration - candid - street - photography - north - london (1 of 1).jpg",
+            "relaxing - at - the - beach - documentary - photography - west - wittering (1 of 1).jpg",
+            "seaside - architecture - candid - documentary - photography - west - wittering (1 of 1).jpg",
+            "seaside - documentary - photography - west - wittering (1 of 1).jpg",
+            "solitary - figure - coastal - pier - bognor - regis (1 of 1).jpg",
+            "urban - basketball - court - street - photography - o2 - arena (1 of 1).jpg",
+            "urban - commute - candid - documentary - photography - o2 - arena (1 of 1).jpg",
+            "urban - crowd - documentary - photoggraphy - notting - hill (1 of 1).jpg",
+            "urban - documentary - photography - notting - hill (1 of 1).jpg",
+            "urban - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - landscape - viewpoint - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - lifestyle - documentary - photography - north - london (1 of 1).jpg",
+            "urban - lifestyle - documentary - photography - north - london (2 of 1).jpg",
+            "urban - lifestyle - photography - notting - hill (1 of 1).jpg",
+            "urban - market - scene - photography - notting - hill (1 of 1).jpg",
+            "urban - market - street - documentary - notting - hill (1 of 1).jpg",
+            "urban - mural - art - street - photography - notting - hill (1 of 1).jpg",
+            "urban - quiet - moment - street - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - reflection - candid - street - photography - notting - hill (1 of 1).jpg",
+            "urban - street - strider - photography - croydon (1 of 1).jpg",
+            "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
         const gallery = document.getElementById('gallery');
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            // We are explicitly using a direct path here
-            div.innerHTML = `<img src="./images/${file}">`;
+            div.innerHTML = `<img src="images/${file}" alt="Trogerism Photography">`;
             gallery.appendChild(div);
         });
     </script>
