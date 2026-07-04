@@ -11,7 +11,6 @@
         .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 15px; }
         .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
         
-        /* Grid layout ensures images flow left-to-right to preserve narrative order */
         .gallery-container { 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
@@ -42,7 +41,6 @@
 
     <script>
         const imageFiles = [
-            /* STAGE 1: COASTAL SERENITY */
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "coastal - contemplation - candid - seaside - photography - bognor - regis (1 of 1).jpg",
             "moody - coastal - candid - photography - bognor - regis (1 of 1).jpg",
@@ -55,8 +53,6 @@
             "countryside - serenity - documentary - style - photography - west - wittering (1 of 1).jpg",
             "historic - cathedral - architecture - dramatic - sky - photography - chichester (1 of 1).jpg",
             "calm - waters - reflected - architecture - photography - chichester (1 of 1).jpg",
-            
-            /* STAGE 2: THE TRANSITION TO URBAN LIFE */
             "urban - landscape - viewpoint - documentary - photography - woolwich (1 of 1).jpg",
             "candid - moment - urban - landscape - woolwich (1 of 1).jpg",
             "candid - street - photography - urban - mural - woolwich (1 of 1).jpg",
@@ -91,7 +87,7 @@
         imageFiles.forEach(file => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
-            div.innerHTML = `<img src="images/${file}" alt="Photography by Trogerism">`;
+            div.innerHTML = `<img src="images/${file}">`;
             gallery.appendChild(div);
         });
     </script>
