@@ -21,18 +21,18 @@
         .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
         .update-date { font-size: 0.6rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase; margin-top: 10px; }
         
-        .nav-section { text-align: center; padding: 40px 20px; }
-        .about-btn { 
-            background: none; border: 1px solid #000; padding: 10px 30px; 
+        .nav-section { text-align: center; padding: 30px 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .action-btn { 
+            background: none; border: 1px solid #000; padding: 10px 25px; 
             font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; 
             cursor: pointer; transition: 0.3s; 
         }
-        .about-btn:hover { background: #000; color: #fff; }
+        .action-btn:hover, .action-btn.active { background: #000; color: #fff; }
         
         #about-content { max-width: 800px; margin: 0 auto; padding: 0 20px; display: none; text-align: center; margin-bottom: 40px; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        .gallery-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        .gallery-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .gallery-item { position: relative; display: block; cursor: pointer; }
         .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
         .gallery-item img:hover { transform: scale(1.02); }
@@ -62,11 +62,13 @@
         <h1>TROGERISM PHOTOGRAPHY</h1>
         <div class="sub-name">Tom Rogers</div>
         <div class="location">Bognor Regis, UK</div>
-        <div class="update-date">Latest Update: July 2026</div>
+        <div class="update-date">Latest Update: August 2026</div>
     </header>
 
     <div class="nav-section">
-        <button class="about-btn" onclick="toggleAbout()">About Me</button>
+        <button class="action-btn" onclick="toggleAbout()">About Me</button>
+        <button class="action-btn active" id="btn-landscapes" onclick="switchCategory('landscapes')">Landscapes</button>
+        <button class="action-btn" id="btn-street" onclick="switchCategory('street')">Street & Urban</button>
     </div>
 
     <section id="about-content">
@@ -92,8 +94,8 @@
     </footer>
 
     <div style="display:none;">
-        <p>street photography documentary photography black and white photography urban lifestyle coastal photography architecture photography candid photography Canon photography narrative photography</p>
-        <p>#streetphotography #documentaryphotography #bnwphotography #urbanphotography #coastalphotography #candidphotography #canonphotography #narrativephotography</p>
+        street photography documentary photography black and white photography urban lifestyle coastal photography architecture photography candid photography Canon photography narrative photography
+        #streetphotography #documentaryphotography #bnwphotography #urbanphotography #coastalphotography #candidphotography #canonphotography #narrativephotography
     </div>
 
     <script>
@@ -102,63 +104,119 @@
             content.style.display = (content.style.display === 'block') ? 'none' : 'block';
         }
 
-        const imageFiles = [
-            "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
+        const landscapeFiles = [
+            "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
+            "candid - landscape - couple walking down a dirt path towards the historic coastguard cottages with the dramatic white chalk cliffs of the Seven Sisters in the background.jpg",
+            "candid - landscape - group of people standing near edge of chalk path with Seven Sisters cliff in background.jpg",
+            "candid - landscape - hikers with walking poles and backpacks walking along coastal path with distant lighthouse at Seven Sisters.jpg",
+            "candid - landscape - historic castle tower - timber framed Tudor house - waterfront brick wall (1 of 1).jpg",
+            "candid - landscape - historic coastguard cottages in foreground with person walking near wooden gate and Seven Sisters cliffs in background.jpg",
+            "candid - landscape - lone figure standing on edge of dramatic white chalk cliff at Seven Sisters.jpg",
+            "candid - landscape - person with hat - standing - historic barn - corrugated shed - fence - trees (1 of 1).jpg",
+            "candid - landscape - small group of people standing near edge of high cliff overlooking the sea with distant sailboat.jpg",
+            "candid - landscape - woman - walking - grass - historic timber framed buildings (1 of 1).jpg",
+            "candid - landscape - woman carrying backpack and walking down coastal path with hikers and Seven Sisters cliffs in background.jpg",
+            "candid - portrait - woman holding black parasol and vintage camera standing on coastal path near wire fence.jpg",
+            "candid - portrait - young man in striped shirt standing on edge of white chalk cliff looking out to sea.jpg",
             "coastal - contemplation - candid - seaside- photography - bognor - regis (1 of 1).jpg",
-            "moody - coastal - candid - photography - bognor - regis (1 of 1).jpg",
-            "solitary - figure - coastal - pier - bognor - regis (1 of 1).jpg",
-            "geometric - composition - coastal - landscape- photography - bognor - regis (1 of 1).jpg",
+            "countryside - serenity - documentary - style - photography - west - wittering (1 of 1).jpg",
             "cyclist - in - motion - coastal - path - bognor - regis (1 of 1).jpg",
+            "geometric - composition - coastal - landscape- photography - bognor - regis (1 of 1).jpg",
+            "historic - cathedral - architecture - dramatic - sky - photography - chichester - cathedral (1 of 1).jpg",
+            "moody - coastal - candid - photography - bognor - regis (1 of 1).jpg",
+            "relaxing - at - the - beach - documentary - photography - west - wittering (1 of 1).jpg",
             "seaside - architecture - candid - documentary - photography - west - wittering (1 of 1).jpg",
             "seaside - documentary - photography - west - wittering (1 of 1).jpg",
-            "relaxing - at - the - beach - documentary - photography - west - wittering (1 of 1).jpg",
-            "countryside - serenity - documentary - style - photography - west - wittering (1 of 1).jpg",
-            "historic - cathedral - architecture - dramatic - sky - photography - chichester - cathedral (1 of 1).jpg",
-            "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
-            "urban - landscape - viewpoint - documentary - photography - woolwich (1 of 1).jpg",
-            "urban - documentary - photography - woolwich (1 of 1).jpg",
-            "urban - quiet - moment - street - documentary - photography - woolwich (1 of 1).jpg",
-            "candid - moment - urban - landscape - woolwich (1 of 1).jpg",
-            "candid - street - photography - urban - mural - woolwich (1 of 1).jpg",
-            "parent - and - child - walking - street - documentary - photography - woolwich (1 of 1).jpg",
-            "city - life - and - rooftop - activity - candid - photography - o2 - arena (1 of 1).jpg",
-            "urban - commute - candid - documentary - photography - o2 - arena (1 of 1).jpg",
-            "urban - basketball - court - street - photography - o2 - arena (1 of 1).jpg",
+            "solitary - figure - coastal - pier - bognor - regis (1 of 1).jpg"
+        ];
+
+        const streetFiles = [
+            "Urban - geometric - street - photography - croydon (1 of 1).jpg",
+            "candid - alleyway - woman smoking cigarette next to rubbish bins - framed by ornate metal gate in Arundel.jpg",
+            "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
+            "candid - interior - cathedral nave - woman walking in sunlight - stone columns - stained glass windows (1 of 1).jpg",
+            "candid - moment - london - souvenir - shop - street - photography - notting - hill (1 of 1).jpg",
             "candid - moment - urban - design - o2 - arena (1 of 1).jpg",
+            "candid - moment - urban - landscape - woolwich (1 of 1).jpg",
+            "candid - moment - urban - market - documentary - notting - hill (1 of 1).jpg",
+            "candid - street - busker playing acoustic guitar and singing into microphone - standing outside Norfolk Arms pub in Arundel.jpg",
+            "candid - street - cafe scene - man and woman sitting at table - child and woman walking past storefront window (1 of 1).jpg",
+            "candid - street - cafe scene - woman sitting at outdoor table - reflection in window - man and woman walking past (1 of 1).jpg",
+            "candid - street - couple standing outside cafe window - reflection of historic half-timbered houses and street scene.jpg",
+            "candid - street - cyclist - riding bicycle - framed through fence bars - urban street (1 of 1).jpg",
+            "candid - street - group of people - sitting and standing - bus stop bench - Welcome to High Street's Co-op sign (1 of 1).jpg",
+            "candid - street - man - mobility scooter - alleyway - historic buildings - steps (1 of 1).jpg",
+            "candid - street - man - mobility scooter - path - historic timber framed village (1 of 1).jpg",
+            "candid - street - man - showing phone - woman - indoor - shields (1 of 1).jpg",
+            "candid - street - man - woman - shopping - market stall - baskets (1 of 1).jpg",
+            "candid - street - man and woman walking - historic building with domed roof - parked cars - stone wall (1 of 1).jpg",
+            "candid - street - man walking - bicycle rider - bridge - modern apartment building with scaffolding (1 of 1).jpg",
+            "candid - street - photography - urban - mural - woolwich (1 of 1).jpg",
+            "candid - street - portrait - documentary - notting - hill (1 of 1).jpg",
+            "candid - street - scene - photography - north - london (2 of 1).jpg",
+            "candid - street - street performer on stilts - juggling clubs - historic building facade - pedestrians watching (1 of 1).jpg",
+            "candid - street - two people - walking - metallic sphere structure - circular pattern - modern building facade (1 of 1).jpg",
+            "candid - street - woman - sitting indoors - drinking through straw - storefront window - nail salon (1 of 1).jpg",
+            "candid - street - woman - standing indoors - styling hair - storefront window - white awning (1 of 1).jpg",
+            "candid - street - woman holding mirror reflecting herself - standing near back of white Toyota pickup truck - historic brick building facade.jpg",
+            "candid - street - woman in sun hat pushing stroller with cooler box - walking past stone wall and greenery in Arundel.jpg",
+            "candid - street - woman walking - double decker bus - not in service sign - bus stop (1 of 1).jpg",
+            "candid - street - woman wearing sun hat - walking past historic brick building - arched doorway - window (1 of 1).jpg",
+            "candid - street - woman wearing sun visor and patterned trousers - sitting on curb next to storefront - wet paint sign - water bottle.jpg",
+            "city - life - and - rooftop - activity - candid - photography - o2 - arena (1 of 1).jpg",
+            "parent - and - child - walking - street - documentary - photography - woolwich (1 of 1).jpg",
+            "public - celebration - candid - street - photography - north - london (1 of 1).jpg",
+            "urban - basketball - court - street - photography - o2 - arena (1 of 1).jpg",
+            "urban - commute - candid - documentary - photography - o2 - arena (1 of 1).jpg",
+            "urban - crowd - documentary - photoggraphy - notting - hill (1 of 1).jpg",
+            "urban - documentary - photography - notting - hill (1 of 1).jpg",
+            "urban - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - landscape - viewpoint - documentary - photography - woolwich (1 of 1).jpg",
             "urban - lifestyle - documentary - photography - north - london (1 of 1).jpg",
             "urban - lifestyle - documentary - photography - north - london (2 of 1).jpg",
-            "candid - street - scene - photography - north - london (2 of 1).jpg",
-            "public - celebration - candid - street - photography - north - london (1 of 1).jpg",
             "urban - lifestyle - photography - notting - hill (1 of 1).jpg",
             "urban - market - scene - photography - notting - hill (1 of 1).jpg",
             "urban - market - street - documentary - notting - hill (1 of 1).jpg",
-            "candid - street - portrait - documentary - notting - hill (1 of 1).jpg",
-            "candid - moment - urban - market - documentary - notting - hill (1 of 1).jpg",
-            "urban - reflection - candid - street - photography - notting - hill (1 of 1).jpg",
             "urban - mural - art - street - photography - notting - hill (1 of 1).jpg",
-            "urban - documentary - photography - notting - hill (1 of 1).jpg",
-            "urban - street - style - photography - notting - hill (1 of 1).jpg",
-            "candid - moment - london - souvenir - shop - street - photography - notting - hill (1 of 1).jpg",
-            "Urban - geometric - street - photography - croydon (1 of 1).jpg",
-            "urban - street - strider - photography - croydon (1 of 1).jpg"
+            "urban - quiet - moment - street - documentary - photography - woolwich (1 of 1).jpg",
+            "urban - reflection - candid - street - photography - notting - hill (1 of 1).jpg",
+            "urban - street - strider - photography - croydon (1 of 1).jpg",
+            "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
-        const gallery = document.getElementById('gallery');
-        imageFiles.forEach(file => {
-            const div = document.createElement('div');
-            div.className = 'gallery-item';
-            div.onclick = () => openLightbox(`images/${file}`);
-            div.innerHTML = `
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
-                <div class="watermark-text">© Trogerism Photography</div>
-            `;
-            gallery.appendChild(div);
-        });
+        function switchCategory(category) {
+            document.getElementById('btn-landscapes').classList.remove('active');
+            document.getElementById('btn-street').classList.remove('active');
+            
+            if (category === 'landscapes') {
+                document.getElementById('btn-landscapes').classList.add('active');
+                renderGallery(landscapeFiles);
+            } else {
+                document.getElementById('btn-street').classList.add('active');
+                renderGallery(streetFiles);
+            }
+        }
+
+        function renderGallery(files) {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            files.forEach(file => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.onclick = () => openLightbox(`images/${file}`);
+                div.innerHTML = `
+                    <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
+                    <div class="watermark-text">&copy; Trogerism Photography</div>
+                `;
+                gallery.appendChild(div);
+            });
+        }
 
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
+        
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
@@ -166,6 +224,9 @@
         window.onscroll = () => {
             document.getElementById('back-to-top').style.display = (window.scrollY > 300) ? 'block' : 'none';
         };
+
+        // Load landscapes by default when page opens
+        renderGallery(landscapeFiles);
     </script>
 </body>
 </html>
