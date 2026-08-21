@@ -13,7 +13,6 @@
     <title>TROGERISM PHOTOGRAPHY</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
-    <!-- Performance optimization preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
@@ -82,7 +81,6 @@
         footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
-        /* Mobile Adjustments */
         @media(max-width: 600px) {
             h1 { font-size: 1.6rem; letter-spacing: 4px; }
             header { padding: 30px 15px 20px; }
@@ -108,7 +106,7 @@
     <!-- Home Landing Section -->
     <section id="home-section">
         <div class="intro-text">
-            <p>Take a look around my photos capturing everyday life, people out and about, and quiet coastal spots. Have a click on a collection below to get started.</p>
+            <p>Welcome to Trogerism Photography. Take a look around my photos capturing everyday life, people out and about, and quiet coastal spots. Have a click on a collection below to get started.</p>
         </div>
         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <button class="action-btn" onclick="switchView('landscapes')" style="background: #000; color: #fff; padding: 12px 30px;">Explore Landscapes</button>
@@ -274,15 +272,18 @@
         function renderGallery(files) {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
-            files.forEach(file => {
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                div.onclick = () => openLightbox(`images/${file}`);
-                div.innerHTML = `
-                    <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
-                    <div class="watermark-text">&copy; Trogerism Photography</div>
-                `;
-                gallery.appendChild(div);
+            // Use requestAnimationFrame to ensure smooth rendering without stutter
+            requestAnimationFrame(() => {
+                files.forEach(file => {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    div.onclick = () => openLightbox(`images/${file}`);
+                    div.innerHTML = `
+                        <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
+                        <div class="watermark-text">&copy; Trogerism Photography</div>
+                    `;
+                    gallery.appendChild(div);
+                });
             });
         }
 
