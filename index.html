@@ -15,11 +15,10 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #ffffff; color: #000000; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-        header { padding: 60px 20px; text-align: center; border-bottom: 1px solid #eee; }
-        h1 { font-size: 2.2rem; font-weight: 300; letter-spacing: 6px; margin-bottom: 10px; text-transform: uppercase; }
+        header { padding: 50px 20px 30px; text-align: center; border-bottom: 1px solid #eee; }
+        h1 { font-size: 2.2rem; font-weight: 300; letter-spacing: 6px; margin-bottom: 10px; text-transform: uppercase; cursor: pointer; }
         .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 5px; }
         .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
-        .update-date { font-size: 0.6rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase; margin-top: 10px; }
         
         .nav-section { text-align: center; padding: 30px 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .action-btn { 
@@ -29,16 +28,24 @@
         }
         .action-btn:hover, .action-btn.active { background: #000; color: #fff; }
         
+        /* Home Landing Section */
+        #home-section { max-width: 900px; margin: 40px auto; padding: 0 20px; text-align: center; display: block; }
+        .hero-image-wrapper { position: relative; width: 100%; margin-bottom: 30px; cursor: pointer; }
+        .hero-image-wrapper img { width: 100%; height: auto; display: block; }
+        .intro-text { max-width: 650px; margin: 0 auto 30px; font-size: 0.95rem; line-height: 1.8; color: #333; }
+
+        /* About Section */
         #about-content { max-width: 800px; margin: 0 auto; padding: 0 20px; display: none; text-align: center; margin-bottom: 40px; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* Natural proportions layout */
+        /* Gallery Container (Original Proportions Layout) */
         .gallery-container { 
             columns: 4 250px; 
             column-gap: 15px; 
             max-width: 1400px; 
             margin: 40px auto; 
             padding: 0 20px; 
+            display: none;
         }
         .gallery-item { 
             position: relative; 
@@ -68,31 +75,48 @@
         
         #back-to-top { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; padding: 10px 15px; cursor: pointer; display: none; font-size: 0.6rem; letter-spacing: 1px; }
         
-        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <header>
-        <h1>TROGERISM PHOTOGRAPHY</h1>
+        <h1 onclick="switchView('home')">TROGERISM PHOTOGRAPHY</h1>
         <div class="sub-name">Tom Rogers</div>
         <div class="location">Bognor Regis, UK</div>
-        <div class="update-date">Latest Update: August 2026</div>
     </header>
 
     <div class="nav-section">
-        <button class="action-btn" onclick="toggleAbout()">About Me</button>
-        <button class="action-btn active" id="btn-landscapes" onclick="switchCategory('landscapes')">Landscapes</button>
-        <button class="action-btn" id="btn-street" onclick="switchCategory('street')">Street & Urban</button>
+        <button class="action-btn active" id="btn-home" onclick="switchView('home')">Home</button>
+        <button class="action-btn" id="btn-about" onclick="toggleAbout()">About Me</button>
+        <button class="action-btn" id="btn-landscapes" onclick="switchView('landscapes')">Landscapes</button>
+        <button class="action-btn" id="btn-street" onclick="switchView('street')">Street & Urban</button>
     </div>
 
-    <section id="about-content">
-        <p>Trogerism is just my name, paired with the ism that drives me. It’s the idea that every photo I take is a slice of my own experience, even when I’m the one standing behind the lens and staying out of the frame.</p>
-        <p>I spent 8 years traveling around the country for work, and when COVID began in 2020, I started using my phone to document the places I encountered. That period of constant movement became my training ground, I learned to adapt quickly to new environments, whether coastal landscapes, quiet towns, or the intensity of city centers. I am no longer traveling for work, but those years of movement deeply shaped how I see the world today. Around 2023, I began using my first Canon camera, and I have been using Canon ever since to refine my craft.</p>
-        <p>I usually lean into black and white because it gets straight to the point, cutting through the clutter to focus on real emotion and the geometry of what’s in front of me. I don’t sit around waiting for a shot to happen, I’m out there moving through the environment, catching people and places exactly as they are. It’s raw, it’s honest, and it’s about capturing a genuine narrative of the world as I see it, one frame at a time.</p>
+    <!-- Home Landing Section -->
+    <section id="home-section">
+        <div class="hero-image-wrapper" onclick="switchView('landscapes')">
+            <img src="images/candid - landscape - lone figure standing on edge of dramatic white chalk cliff at Seven Sisters.jpg" alt="Trogerism Photography Feature">
+            <div class="watermark-text">&copy; Trogerism Photography</div>
+        </div>
+        <div class="intro-text">
+            <p>Every photo is a slice of experience—capturing the raw geometry of human behavior, coastal expanses, and the fleeting rhythms of daily life through a Canon lens.</p>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <button class="action-btn" onclick="switchView('landscapes')" style="background: #000; color: #fff;">Explore Landscapes</button>
+            <button class="action-btn" onclick="switchView('street')" style="background: #000; color: #fff;">Explore Street & Urban</button>
+        </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about-content">
+        <p>Trogerism is just my name, paired with the ism that drives me. It’s the idea that every photo I take is a slice of my own experience, even when I’m the one standing behind the lens and staying out of the frame.</p>
+        <p>I spent 8 years traveling around the country for work, and when COVID began in 2020, I started using my phone to document the places I encountered. That period of constant movement became my training ground, learning to adapt quickly to new environments, whether coastal landscapes, quiet towns, or the intensity of city centers. I am no longer traveling for work, but those years of movement deeply shaped how I see the world today. Around 2023, I began using my first Canon camera, and I have been using Canon ever since to refine my craft.</p>
+        <p>I usually lean into black and white because it gets straight to the point, cutting through the clutter to focus on real emotion and the geometry of what’s in front of me. I don’t sit around waiting for a shot to happen, I’m out there moving through the environment, catching people and places exactly as they are. It’s raw, it's honest, and it’s about capturing a genuine narrative of the world as I see it, one frame at a time.</p>
+    </section>
+
+    <!-- Gallery Container -->
     <div class="gallery-container" id="gallery"></div>
 
     <div id="lightbox" onclick="closeLightbox()">
@@ -115,11 +139,6 @@
     </div>
 
     <script>
-        function toggleAbout() {
-            const content = document.getElementById('about-content');
-            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
-        }
-
         const landscapeFiles = [
             "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
             "candid - landscape - couple walking down a dirt path towards the historic coastguard cottages with the dramatic white chalk cliffs of the Seven Sisters in the background.jpg",
@@ -200,17 +219,49 @@
             "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
-        function switchCategory(category) {
+        function switchView(view) {
+            document.getElementById('btn-home').classList.remove('active');
             document.getElementById('btn-landscapes').classList.remove('active');
             document.getElementById('btn-street').classList.remove('active');
             
-            if (category === 'landscapes') {
+            const homeSection = document.getElementById('home-section');
+            const galleryContainer = document.getElementById('gallery');
+            const aboutContent = document.getElementById('about-content');
+            
+            aboutContent.style.display = 'none';
+
+            if (view === 'home') {
+                document.getElementById('btn-home').classList.add('active');
+                homeSection.style.display = 'block';
+                galleryContainer.style.display = 'none';
+            } else if (view === 'landscapes') {
                 document.getElementById('btn-landscapes').classList.add('active');
+                homeSection.style.display = 'none';
+                galleryContainer.style.display = 'block';
                 renderGallery(landscapeFiles);
-            } else {
+            } else if (view === 'street') {
                 document.getElementById('btn-street').classList.add('active');
+                homeSection.style.display = 'none';
+                galleryContainer.style.display = 'block';
                 renderGallery(streetFiles);
             }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function toggleAbout() {
+            const aboutContent = document.getElementById('about-content');
+            const homeSection = document.getElementById('home-section');
+            const galleryContainer = document.getElementById('gallery');
+            
+            document.getElementById('btn-home').classList.remove('active');
+            document.getElementById('btn-landscapes').classList.remove('active');
+            document.getElementById('btn-street').classList.remove('active');
+            document.getElementById('btn-about').classList.add('active');
+
+            homeSection.style.display = 'none';
+            galleryContainer.style.display = 'none';
+            aboutContent.style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function renderGallery(files) {
@@ -240,9 +291,6 @@
         window.onscroll = () => {
             document.getElementById('back-to-top').style.display = (window.scrollY > 300) ? 'block' : 'none';
         };
-
-        // Load landscapes by default when page opens
-        renderGallery(landscapeFiles);
     </script>
 </body>
 </html>
