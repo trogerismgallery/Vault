@@ -35,6 +35,7 @@
         
         /* Home Landing Section */
         #home-section { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; display: block; }
+        .home-hero-title { font-size: 2rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; line-height: 1.3; }
         .intro-text { max-width: 650px; margin: 0 auto 30px; font-size: 1rem; line-height: 1.9; color: #333; }
 
         /* About Section */
@@ -84,6 +85,7 @@
         @media(max-width: 600px) {
             h1 { font-size: 1.6rem; letter-spacing: 4px; }
             header { padding: 30px 15px 20px; }
+            .home-hero-title { font-size: 1.5rem; letter-spacing: 2px; }
         }
     </style>
 </head>
@@ -105,8 +107,9 @@
 
     <!-- Home Landing Section -->
     <section id="home-section">
+        <h2 class="home-hero-title">Welcome to Trogerism Photography</h2>
         <div class="intro-text">
-            <p>Welcome to Trogerism Photography. Take a look around my photos capturing everyday life, people out and about, and quiet coastal spots. Have a click on a collection below to get started.</p>
+            <p>Take a look around my photos capturing everyday life, people out and about, and quiet coastal spots. Have a click on a collection below to get started.</p>
         </div>
         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <button class="action-btn" onclick="switchView('landscapes')" style="background: #000; color: #fff; padding: 12px 30px;">Explore Landscapes</button>
@@ -272,7 +275,6 @@
         function renderGallery(files) {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
-            // Use requestAnimationFrame to ensure smooth rendering without stutter
             requestAnimationFrame(() => {
                 files.forEach(file => {
                     const div = document.createElement('div');
