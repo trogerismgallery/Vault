@@ -33,13 +33,17 @@
         }
         .action-btn:hover, .action-btn.active { background: #000; color: #fff; }
         
+        /* Views */
+        .page-view { display: none; }
+        .page-view.active-view { display: block; }
+
         /* Home Landing Section */
-        #home-section { max-width: 850px; margin: 60px auto; padding: 0 20px; text-align: center; display: block; }
+        #home-section { max-width: 850px; margin: 60px auto; padding: 0 20px; text-align: center; }
         .home-hero-title { font-size: 2.6rem; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 25px; line-height: 1.25; color: #111; }
         .intro-text { max-width: 650px; margin: 0 auto 35px; font-size: 1.05rem; line-height: 1.9; color: #333; }
 
         /* About Section */
-        #about-content { max-width: 800px; margin: 0 auto; padding: 0 20px; display: none; text-align: center; margin-bottom: 40px; }
+        #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
         /* Gallery Container */
@@ -49,7 +53,6 @@
             max-width: 1400px; 
             margin: 40px auto; 
             padding: 0 20px; 
-            display: none;
         }
         .gallery-item { 
             position: relative; 
@@ -77,7 +80,7 @@
             text-shadow: 0px 0px 4px rgba(0,0,0,0.3); z-index: 1;
         }
         
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; padding: 10px 15px; cursor: pointer; display: none; font-size: 0.6rem; letter-spacing: 1px; }
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; padding: 10px 15px; cursor: pointer; display: none; font-size: 0.6rem; letter-spacing: 1px; z-index: 100; }
         
         footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
@@ -100,13 +103,13 @@
 
     <div class="nav-section">
         <button class="action-btn active" id="btn-home" onclick="switchView('home')">Home</button>
-        <button class="action-btn" id="btn-about" onclick="toggleAbout()">About Me</button>
+        <button class="action-btn" id="btn-about" onclick="switchView('about')">About Me</button>
         <button class="action-btn" id="btn-landscapes" onclick="switchView('landscapes')">Landscapes</button>
         <button class="action-btn" id="btn-street" onclick="switchView('street')">Street & Urban</button>
     </div>
 
     <!-- Home Landing Section -->
-    <section id="home-section">
+    <section id="home-section" class="page-view active-view">
         <h2 class="home-hero-title">Welcome to Trogerism Photography</h2>
         <div class="intro-text">
             <p>Take a look around my photos capturing everyday life, people out and about, and quiet coastal spots. Have a click on a collection below to get started.</p>
@@ -118,14 +121,16 @@
     </section>
 
     <!-- About Section -->
-    <section id="about-content">
+    <section id="about-content" class="page-view">
         <p>Trogerism is just my name, paired with the ism that drives me. It’s the idea that every photo I take is a slice of my own experience, even when I’m the one standing behind the lens and staying out of the frame.</p>
         <p>I spent 8 years traveling around the country for work, and when COVID began in 2020, I started using my phone to document the places I encountered. That period of constant movement became my training ground, learning to adapt quickly to new environments, whether coastal landscapes, quiet towns, or the intensity of city centers. I am no longer traveling for work, but those years of movement deeply shaped how I see the world today. Around 2023, I began using my first Canon camera, and I have been using Canon ever since to refine my craft.</p>
         <p>I usually lean into black and white because it gets straight to the point, cutting through the clutter to focus on real emotion and the geometry of what’s in front of me. I don’t sit around waiting for a shot to happen, I’m out there moving through the environment, catching people and places exactly as they are. It’s raw, it's honest, and it’s about capturing a genuine narrative of the world as I see it, one frame at a time.</p>
     </section>
 
     <!-- Gallery Container -->
-    <div class="gallery-container" id="gallery"></div>
+    <section id="gallery-section" class="page-view">
+        <div class="gallery-container" id="gallery"></div>
+    </section>
 
     <div id="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Zoomed view">
@@ -227,66 +232,44 @@
             "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
+        // Pre-render galleries cleanly in memory so they are instantly ready with zero layout jitter
+        const landscapeHTML = landscapeFiles.map(file => `
+            <div class="gallery-item" onclick="openLightbox('images/${file}')">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
+                <div class="watermark-text">&copy; Trogerism Photography</div>
+            </div>
+        `).join('');
+
+        const streetHTML = streetFiles.map(file => `
+            <div class="gallery-item" onclick="openLightbox('images/${file}')">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
+                <div class="watermark-text">&copy; Trogerism Photography</div>
+            </div>
+        `).join('');
+
         function switchView(view) {
-            document.getElementById('btn-home').classList.remove('active');
-            document.getElementById('btn-landscapes').classList.remove('active');
-            document.getElementById('btn-street').classList.remove('active');
-            
-            const homeSection = document.getElementById('home-section');
-            const galleryContainer = document.getElementById('gallery');
-            const aboutContent = document.getElementById('about-content');
-            
-            aboutContent.style.display = 'none';
+            // Update buttons
+            document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
+            if (view === 'home') document.getElementById('btn-home').classList.add('active');
+            if (view === 'about') document.getElementById('btn-about').classList.add('active');
+            if (view === 'landscapes') document.getElementById('btn-landscapes').classList.add('active');
+            if (view === 'street') document.getElementById('btn-street').classList.add('active');
+
+            // Toggle view sections cleanly
+            document.querySelectorAll('.page-view').forEach(sec => sec.classList.remove('active-view'));
 
             if (view === 'home') {
-                document.getElementById('btn-home').classList.add('active');
-                homeSection.style.display = 'block';
-                galleryContainer.style.display = 'none';
+                document.getElementById('home-section').classList.add('active-view');
+            } else if (view === 'about') {
+                document.getElementById('about-content').classList.add('active-view');
             } else if (view === 'landscapes') {
-                document.getElementById('btn-landscapes').classList.add('active');
-                homeSection.style.display = 'none';
-                galleryContainer.style.display = 'block';
-                renderGallery(landscapeFiles);
+                document.getElementById('gallery-section').classList.add('active-view');
+                document.getElementById('gallery').innerHTML = landscapeHTML;
             } else if (view === 'street') {
-                document.getElementById('btn-street').classList.add('active');
-                homeSection.style.display = 'none';
-                galleryContainer.style.display = 'block';
-                renderGallery(streetFiles);
+                document.getElementById('gallery-section').classList.add('active-view');
+                document.getElementById('gallery').innerHTML = streetHTML;
             }
             window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function toggleAbout() {
-            const aboutContent = document.getElementById('about-content');
-            const homeSection = document.getElementById('home-section');
-            const galleryContainer = document.getElementById('gallery');
-            
-            document.getElementById('btn-home').classList.remove('active');
-            document.getElementById('btn-landscapes').classList.remove('active');
-            document.getElementById('btn-street').classList.remove('active');
-            document.getElementById('btn-about').classList.add('active');
-
-            homeSection.style.display = 'none';
-            galleryContainer.style.display = 'none';
-            aboutContent.style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function renderGallery(files) {
-            const gallery = document.getElementById('gallery');
-            gallery.innerHTML = '';
-            requestAnimationFrame(() => {
-                files.forEach(file => {
-                    const div = document.createElement('div');
-                    div.className = 'gallery-item';
-                    div.onclick = () => openLightbox(`images/${file}`);
-                    div.innerHTML = `
-                        <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
-                        <div class="watermark-text">&copy; Trogerism Photography</div>
-                    `;
-                    gallery.appendChild(div);
-                });
-            });
         }
 
         function openLightbox(src) {
