@@ -46,23 +46,25 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* True Natural Masonry Flow for Laptop & Desktop */
+        /* Continuous Left-to-Right Natural Flow Gallery */
         .gallery-container { 
-            max-width: 1400px; 
+            max-width: 1450px; 
             margin: 40px auto; 
             padding: 0 20px; 
-            columns: 4 280px; /* Creates flexible columns that flow naturally without grid/square boxes */
-            column-gap: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-start; /* Flows naturally from left to right across laptop screens */
         }
         .gallery-item { 
             position: relative; 
             cursor: pointer; 
-            break-inside: avoid; /* Prevents photos from getting cut awkwardly across columns */
-            margin-bottom: 15px;
+            height: 280px; /* Locks a clean uniform row height while letting width adapt natively to aspect ratios */
+            display: inline-block;
         }
         .gallery-item img { 
-            width: 100%; /* Spans column width perfectly while keeping its true native aspect ratio height */
-            height: auto;
+            height: 100%; 
+            width: auto; /* Preserves exact original proportions horizontally as they flow left to right */
             display: block; 
             transition: transform 0.3s; 
         }
@@ -84,14 +86,16 @@
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
         @media(max-width: 900px) {
-            .gallery-container { columns: 2 220px; }
+            .gallery-item { height: 200px; }
         }
 
         @media(max-width: 600px) {
             h1 { font-size: 1.6rem; letter-spacing: 4px; }
             header { padding: 30px 15px 20px; }
             .home-hero-title { font-size: 1.8rem; letter-spacing: 3px; }
-            .gallery-container { columns: 1; }
+            .gallery-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+            .gallery-item { height: auto; width: 100%; }
+            .gallery-item img { width: 100%; height: auto; }
         }
     </style>
 </head>
