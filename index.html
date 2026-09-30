@@ -46,25 +46,25 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* Gallery Container */
+        /* Gallery Container - Optimized for Left-to-Right Grid Flow on Laptops */
         .gallery-container { 
-            columns: 4 250px; 
-            column-gap: 15px; 
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px; 
             max-width: 1400px; 
             margin: 40px auto; 
             padding: 0 20px; 
         }
         .gallery-item { 
             position: relative; 
-            display: inline-block; 
             width: 100%; 
-            margin-bottom: 15px; 
+            margin-bottom: 0; 
             cursor: pointer; 
-            break-inside: avoid;
         }
         .gallery-item img { 
             width: 100%; 
-            height: auto; 
+            height: 100%;
+            object-fit: cover;
             display: block; 
             transition: transform 0.3s; 
         }
@@ -85,10 +85,15 @@
         footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
+        @media(max-width: 900px) {
+            .gallery-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media(max-width: 600px) {
             h1 { font-size: 1.6rem; letter-spacing: 4px; }
             header { padding: 30px 15px 20px; }
             .home-hero-title { font-size: 1.8rem; letter-spacing: 3px; }
+            .gallery-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -179,7 +184,7 @@
         ];
 
         const streetFiles = [
-            // Strongest narrative & newly added untitled street highlights positioned first
+            // Strongest narrative & newly added untitled street highlights positioned first (Reads Left to Right on Laptops)
             "untitled (1 of 1).jpg",
             "untitled (12 of 1).jpg",
             "untitled (3 of 1).jpg",
