@@ -46,7 +46,7 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* Original Flow Gallery Container */
+        /* Natural Fluid Gallery Container */
         .gallery-container { 
             max-width: 1400px; 
             margin: 40px auto; 
@@ -59,11 +59,12 @@
         .gallery-item { 
             position: relative; 
             cursor: pointer; 
-            margin-bottom: 0;
+            display: inline-block;
         }
         .gallery-item img { 
-            height: 300px; /* Base height keeping original natural proportions and widths */
+            max-height: 350px; /* Keeps photos controlled in size while preserving their exact original proportions */
             width: auto;
+            height: auto;
             display: block; 
             transition: transform 0.3s; 
         }
@@ -85,7 +86,7 @@
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
         @media(max-width: 900px) {
-            .gallery-item img { height: 220px; }
+            .gallery-item img { max-height: 250px; }
         }
 
         @media(max-width: 600px) {
@@ -93,7 +94,7 @@
             header { padding: 30px 15px 20px; }
             .home-hero-title { font-size: 1.8rem; letter-spacing: 3px; }
             .gallery-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-            .gallery-item img { width: 100%; height: auto; }
+            .gallery-item img { max-height: none; width: 100%; height: auto; }
         }
     </style>
 </head>
