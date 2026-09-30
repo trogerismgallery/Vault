@@ -46,27 +46,26 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* Continuous Left-to-Right Natural Flow Gallery */
+        /* Chain-Linked Fluid Gallery Flow */
         .gallery-container { 
-            max-width: 1450px; 
+            max-width: 1500px; 
             margin: 40px auto; 
             padding: 0 20px; 
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            justify-content: flex-start; /* Flows naturally from left to right across laptop screens */
+            justify-content: center;
         }
         .gallery-item { 
             position: relative; 
             cursor: pointer; 
-            height: 280px; /* Locks a clean uniform row height while letting width adapt natively to aspect ratios */
-            display: inline-block;
+            display: flex;
         }
         .gallery-item img { 
-            height: 100%; 
-            width: auto; /* Preserves exact original proportions horizontally as they flow left to right */
+            height: 320px; /* Locks a clean horizontal viewing height while width flows completely naturally per image aspect ratio */
+            width: auto;
             display: block; 
-            transition: transform 0.3s; 
+            transition: transform 0.3s ease; 
         }
         .gallery-item img:hover { transform: scale(1.01); }
 
@@ -86,7 +85,7 @@
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
         @media(max-width: 900px) {
-            .gallery-item { height: 200px; }
+            .gallery-item img { height: 220px; }
         }
 
         @media(max-width: 600px) {
@@ -94,8 +93,7 @@
             header { padding: 30px 15px 20px; }
             .home-hero-title { font-size: 1.8rem; letter-spacing: 3px; }
             .gallery-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-            .gallery-item { height: auto; width: 100%; }
-            .gallery-item img { width: 100%; height: auto; }
+            .gallery-item img { height: auto; width: 100%; }
         }
     </style>
 </head>
