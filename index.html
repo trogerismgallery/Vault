@@ -46,7 +46,7 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* Gallery Container - Optimized for Left-to-Right Grid Flow on Laptops */
+        /* Gallery Container - CSS Grid Layout with True Natural Aspect Ratios */
         .gallery-container { 
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -54,6 +54,7 @@
             max-width: 1400px; 
             margin: 40px auto; 
             padding: 0 20px; 
+            align-items: start;
         }
         .gallery-item { 
             position: relative; 
@@ -63,8 +64,7 @@
         }
         .gallery-item img { 
             width: 100%; 
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block; 
             transition: transform 0.3s; 
         }
