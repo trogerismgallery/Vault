@@ -46,25 +46,28 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* The Chained Row Gallery Stream */
+        /* True Original Size Chain-Link Flow Gallery */
         .gallery-container { 
             max-width: 1600px; 
             margin: 40px auto; 
-            padding: 0 10px; 
+            padding: 0 15px; 
             display: flex;
             flex-wrap: wrap;
-            gap: 6px; /* Tight, elegant spacing between images like linked chain frames */
+            gap: 6px; /* Tight chain-link spacing */
             justify-content: center;
+            align-items: flex-start;
         }
         .gallery-item { 
             position: relative; 
             cursor: pointer; 
-            height: 260px; /* Uniform row height that allows individual widths to adjust dynamically to native ratios */
             display: flex;
         }
         .gallery-item img { 
-            height: 100%; 
-            width: auto; 
+            /* Preserves native aspect ratios and original sizing proportions across rows */
+            height: auto; 
+            width: auto;
+            max-height: 380px; /* Scales down oversized files proportionally while keeping their unique original ratios intact */
+            max-width: 100%;
             display: block; 
             transition: transform 0.25s ease; 
         }
@@ -85,17 +88,12 @@
         footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; clear: both; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
-        @media(max-width: 900px) {
-            .gallery-item { height: 200px; }
-        }
-
         @media(max-width: 600px) {
             h1 { font-size: 1.6rem; letter-spacing: 4px; }
             header { padding: 30px 15px 20px; }
             .home-hero-title { font-size: 1.8rem; letter-spacing: 3px; }
             .gallery-container { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-            .gallery-item { height: auto; width: 100%; }
-            .gallery-item img { width: 100%; height: auto; }
+            .gallery-item img { max-height: none; width: 100%; height: auto; }
         }
     </style>
 </head>
