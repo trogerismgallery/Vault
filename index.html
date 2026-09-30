@@ -46,24 +46,22 @@
         #about-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
         #about-content p { font-size: 0.95rem; line-height: 1.9; color: #333; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        /* Natural Fluid Gallery Container */
+        /* True Natural Masonry Flow for Laptop & Desktop */
         .gallery-container { 
             max-width: 1400px; 
             margin: 40px auto; 
             padding: 0 20px; 
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
+            columns: 4 280px; /* Creates flexible columns that flow naturally without grid/square boxes */
+            column-gap: 15px;
         }
         .gallery-item { 
             position: relative; 
             cursor: pointer; 
-            display: inline-block;
+            break-inside: avoid; /* Prevents photos from getting cut awkwardly across columns */
+            margin-bottom: 15px;
         }
         .gallery-item img { 
-            max-height: 350px; /* Keeps photos controlled in size while preserving their exact original proportions */
-            width: auto;
+            width: 100%; /* Spans column width perfectly while keeping its true native aspect ratio height */
             height: auto;
             display: block; 
             transition: transform 0.3s; 
@@ -82,19 +80,18 @@
         
         #back-to-top { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; padding: 10px 15px; cursor: pointer; display: none; font-size: 0.6rem; letter-spacing: 1px; z-index: 100; }
         
-        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; }
+        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; border-top: 1px solid #eee; margin-top: 40px; clear: both; }
         footer a { color: #aaa; text-decoration: none; margin: 0 10px; }
 
         @media(max-width: 900px) {
-            .gallery-item img { max-height: 250px; }
+            .gallery-container { columns: 2 220px; }
         }
 
         @media(max-width: 600px) {
             h1 { font-size: 1.6rem; letter-spacing: 4px; }
             header { padding: 30px 15px 20px; }
             .home-hero-title { font-size: 1.8rem; letter-spacing: 3px; }
-            .gallery-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-            .gallery-item img { max-height: none; width: 100%; height: auto; }
+            .gallery-container { columns: 1; }
         }
     </style>
 </head>
@@ -185,7 +182,7 @@
         ];
 
         const streetFiles = [
-            // Strongest narrative & newly added untitled street highlights positioned first (Flows Left to Right)
+            // Strongest narrative & newly added untitled street highlights positioned first
             "untitled (1 of 1).jpg",
             "untitled (12 of 1).jpg",
             "untitled (3 of 1).jpg",
@@ -224,7 +221,7 @@
             "untitled (34 of 1).jpg",
             "untitled (35 of 1).jpg",
             "untitled (38 of 1).jpg",
-            // Classic documentary and urban portfolio pieces flowing afterwards
+            // Classic documentary and urban portfolio pieces
             "candid - alleyway - woman smoking cigarette next to rubbish bins - framed by ornate metal gate in Arundel.jpg",
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "candid - interior - cathedral nave - woman walking in sunlight - stone columns - stained glass windows (1 of 1).jpg",
@@ -276,7 +273,6 @@
             "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
-        // Pre-render galleries cleanly in memory so they are instantly ready with zero layout jitter
         const landscapeHTML = landscapeFiles.map(file => `
             <div class="gallery-item" onclick="openLightbox('images/${file}')">
                 <img src="images/${file}" alt="Trogerism Photography" loading="lazy">
@@ -292,14 +288,12 @@
         `).join('');
 
         function switchView(view) {
-            // Update buttons
             document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
             if (view === 'home') document.getElementById('btn-home').classList.add('active');
             if (view === 'about') document.getElementById('btn-about').classList.add('active');
             if (view === 'landscapes') document.getElementById('btn-landscapes').classList.add('active');
             if (view === 'street') document.getElementById('btn-street').classList.add('active');
 
-            // Toggle view sections cleanly
             document.querySelectorAll('.page-view').forEach(sec => sec.classList.remove('active-view'));
 
             if (view === 'home') {
