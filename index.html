@@ -282,25 +282,30 @@
             "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
-        function handleImgError(img) {
-            let src = img.getAttribute('src');
-            if (src.includes('images/')) {
-                img.src = src.replace('images/', '');
-            } else if (!src.endsWith('.jpg.jpg')) {
-                img.src = src.replace('.jpg', '.jpg.jpg');
+        function tryFixPath(img) {
+            if (img.dataset.triedFallback) return;
+            img.dataset.triedFallback = "true";
+
+            let currentSrc = img.src;
+            if (currentSrc.includes('/images/')) {
+                // Try root folder if not in images/
+                img.src = currentSrc.replace('/images/', '/');
+            } else if (!currentSrc.endsWith('.jpg.jpg')) {
+                // Try double extension if single failed
+                img.src = currentSrc + '.jpg';
             }
         }
 
         const landscapeHTML = landscapeFiles.map(file => `
             <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="handleImgError(this)">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="tryFixPath(this)">
                 <div class="watermark-text">&copy; Trogerism Photography</div>
             </div>
         `).join('');
 
         const streetHTML = streetFiles.map(file => `
             <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="handleImgError(this)">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="tryFixPath(this)">
                 <div class="watermark-text">&copy; Trogerism Photography</div>
             </div>
         `).join('');
