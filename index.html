@@ -166,13 +166,11 @@
 
     <script>
         const landscapeFiles = [
-            // Featured Statement Landscapes & Iconic Series Lead-ins
             "Lakeside-bird-wildlife-nature-photography-1.jpg.jpg",
             "waterfall-cascades-woods-nature-photography-1.jpg.jpg",
             "candid - landscape - lone figure standing on edge of dramatic white chalk cliff at Seven Sisters.jpg",
             "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
             "on-the-hill-scenic-valley-landscape-photography-1.jpg.jpg",
-            // Supporting Nature & Coastal Narrative Flow
             "candid - landscape - couple walking down a dirt path towards the historic coastguard cottages with the dramatic white chalk cliffs of the Seven Sisters in the background.jpg",
             "lakeside-landscape-mountains-scenic-photography-2.jpg.jpg",
             "waterfall-rocky-stream-nature-photography-2.jpg.jpg",
@@ -210,7 +208,6 @@
         ];
 
         const streetFiles = [
-            // Strongest Narrative & Untitled Highlights Leading the Story
             "untitled (1 of 1).jpg",
             "untitled (12 of 1).jpg",
             "untitled (3 of 1).jpg",
@@ -221,7 +218,6 @@
             "untitled (30 of 1).jpg",
             "untitled (10 of 1).jpg",
             "untitled (36 of 1).jpg",
-            // Remaining Story-Driven Documentary and Urban Portfolio Pieces
             "untitled (2 of 1).jpg",
             "untitled (15 of 1).jpg",
             "untitled (4 of 1).jpg",
@@ -304,19 +300,26 @@
             }
         }
 
-        const landscapeHTML = landscapeFiles.map(file => `
-            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="handleImgError(this)">
-                <div class="watermark-text">&copy; Trogerism Photography</div>
-            </div>
-        `).join('');
+        // Instant-load optimization: First 8 images load immediately (loading="eager"), remaining use lazy loading
+        const landscapeHTML = landscapeFiles.map((file, index) => {
+            const loadAttr = index < 8 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+            return `
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="images/${file}" alt="Trogerism Photography" ${loadAttr} decoding="async" onerror="handleImgError(this)">
+                    <div class="watermark-text">&copy; Trogerism Photography</div>
+                </div>
+            `;
+        }).join('');
 
-        const streetHTML = streetFiles.map(file => `
-            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="handleImgError(this)">
-                <div class="watermark-text">&copy; Trogerism Photography</div>
-            </div>
-        `).join('');
+        const streetHTML = streetFiles.map((file, index) => {
+            const loadAttr = index < 8 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+            return `
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="images/${file}" alt="Trogerism Photography" ${loadAttr} decoding="async" onerror="handleImgError(this)">
+                    <div class="watermark-text">&copy; Trogerism Photography</div>
+                </div>
+            `;
+        }).join('');
 
         function switchView(view) {
             document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
