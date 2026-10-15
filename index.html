@@ -23,8 +23,13 @@
         h1 { font-size: 2.2rem; font-weight: 300; letter-spacing: 6px; margin-bottom: 8px; text-transform: uppercase; cursor: pointer; }
         .sub-name { font-size: 0.7rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 4px; }
         .location { font-size: 0.7rem; letter-spacing: 3px; color: #888; text-transform: uppercase; margin-bottom: 6px; }
-        .header-update-note { font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
+        .header-update-note { font-size: 0.6rem; letter-spacing: 2px; color: #aaa; text-transform: uppercase; margin-bottom: 10px; }
         
+        /* Prominent Top Contact & Social Navigation */
+        .top-contact-bar { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 12px; }
+        .top-contact-bar a { color: #000; text-decoration: none; margin: 0 12px; font-weight: 500; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .top-contact-bar a:hover { border-bottom: 1px solid #000; }
+
         .nav-section { text-align: center; padding: 25px 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .action-btn { 
             background: none; border: 1px solid #000; padding: 10px 25px; 
@@ -102,7 +107,11 @@
         <h1 onclick="switchView('home')">TROGERISM PHOTOGRAPHY</h1>
         <div class="sub-name">Tom Rogers</div>
         <div class="location">Bognor Regis, UK</div>
-        <div class="header-update-note">Last Updated: September 2026</div>
+        <div class="header-update-note">Last Updated: October 2026</div>
+        <div class="top-contact-bar">
+            <a href="mailto:trogerismphotography@yahoo.com">Contact</a> | 
+            <a href="https://www.instagram.com/tomrogers1981" target="_blank">Instagram</a>
+        </div>
     </header>
 
     <div class="nav-section">
@@ -157,11 +166,13 @@
 
     <script>
         const landscapeFiles = [
-            "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
+            // Featured Statement Landscapes & Iconic Series Lead-ins
             "Lakeside-bird-wildlife-nature-photography-1.jpg.jpg",
-            "candid - landscape - group of people standing near edge of chalk path with Seven Sisters cliff in background.jpg",
             "waterfall-cascades-woods-nature-photography-1.jpg.jpg",
+            "candid - landscape - lone figure standing on edge of dramatic white chalk cliff at Seven Sisters.jpg",
+            "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
             "on-the-hill-scenic-valley-landscape-photography-1.jpg.jpg",
+            // Supporting Nature & Coastal Narrative Flow
             "candid - landscape - couple walking down a dirt path towards the historic coastguard cottages with the dramatic white chalk cliffs of the Seven Sisters in the background.jpg",
             "lakeside-landscape-mountains-scenic-photography-2.jpg.jpg",
             "waterfall-rocky-stream-nature-photography-2.jpg.jpg",
@@ -176,12 +187,12 @@
             "waterfall-woodland-cascades-nature-photography-5.jpg.jpg",
             "candid - landscape - historic coastguard cottages in foreground with person walking near wooden gate and Seven Sisters cliffs in background.jpg",
             "lakeside-shoreline-trees-landscape-photography-6.jpg.jpg",
-            "candid - landscape - lone figure standing on edge of dramatic white chalk cliff at Seven Sisters.jpg",
             "lakeside-pathway-hills-scenic-photography-7.jpg.jpg",
             "candid - landscape - person with hat - standing - historic barn - corrugated shed - fence - trees (1 of 1).jpg",
             "lakeside-woodland-view-landscape-photography-8.jpg.jpg",
             "candid - landscape - small group of people standing near edge of high cliff overlooking the sea with distant sailboat.jpg",
             "lakeside-ripples-water-texture-photography-9.jpg.jpg",
+            "candid - landscape - group of people standing near edge of chalk path with Seven Sisters cliff in background.jpg",
             "candid - landscape - woman - walking - grass - historic timber framed buildings (1 of 1).jpg",
             "candid - landscape - woman carrying backpack and walking down coastal path with hikers and Seven Sisters cliffs in background.jpg",
             "candid - portrait - woman holding black parasol and vintage camera standing on coastal path near wire fence.jpg",
@@ -199,6 +210,7 @@
         ];
 
         const streetFiles = [
+            // Strongest Narrative & Untitled Highlights Leading the Story
             "untitled (1 of 1).jpg",
             "untitled (12 of 1).jpg",
             "untitled (3 of 1).jpg",
@@ -209,6 +221,7 @@
             "untitled (30 of 1).jpg",
             "untitled (10 of 1).jpg",
             "untitled (36 of 1).jpg",
+            // Remaining Story-Driven Documentary and Urban Portfolio Pieces
             "untitled (2 of 1).jpg",
             "untitled (15 of 1).jpg",
             "untitled (4 of 1).jpg",
