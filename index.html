@@ -1,15 +1,3 @@
-Here is your updated master copy reflecting your newly modified file list (with lakeside-mountains-water-reflection-photography-4.jpg.jpg, on-the-hill-dramatic-peaks-landscape-photography-5.jpg.jpg, waterfall-rushing-stream-nature-photography-4.jpg.jpg, and waterfall-flowing-river-nature-photography-6.jpg.jpg removed).
-
-All Croydon, Woolwich, and img files remain excluded, all 38 untitled photos are included in Street, and the remaining new series files are mixed dynamically into Landscapes.
-
-Key Speed & Performance Optimizations Included:
-Lazy Loading (loading="lazy"): Images load asynchronously as the user scrolls, preventing initial page weight lag.
-
-Asynchronous Image Pre-decoding (decoding="async"): Ensures image rendering doesn't block DOM parsing or scroll smoothness.
-
-Optimized Layout Flow: Maintained your original CSS chain-link aesthetic while ensuring browser layout calculations complete rapidly.
-
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,10 +63,9 @@ HTML
             display: flex;
         }
         .gallery-item img { 
-            /* Preserves native aspect ratios and original sizing proportions across rows */
             height: auto; 
             width: auto;
-            max-height: 380px; /* Scales down oversized files proportionally while keeping their unique original ratios intact */
+            max-height: 380px; 
             max-width: 100%;
             display: block; 
             transition: transform 0.25s ease; 
@@ -171,30 +158,30 @@ HTML
     <script>
         const landscapeFiles = [
             "calm - waters -reflected - architecture - photography - chichester (1 of 1).jpg",
-            "Lakeside-bird-wildlife-nature-photography-1.jpg.jpg",
+            "Lakeside-bird-wildlife-nature-photography-1.jpg",
             "candid - landscape - group of people standing near edge of chalk path with Seven Sisters cliff in background.jpg",
-            "waterfall-cascades-woods-nature-photography-1.jpg.jpg",
-            "on-the-hill-scenic-valley-landscape-photography-1.jpg.jpg",
+            "waterfall-cascades-woods-nature-photography-1.jpg",
+            "on-the-hill-scenic-valley-landscape-photography-1.jpg",
             "candid - landscape - couple walking down a dirt path towards the historic coastguard cottages with the dramatic white chalk cliffs of the Seven Sisters in the background.jpg",
-            "lakeside-landscape-mountains-scenic-photography-2.jpg.jpg",
-            "waterfall-rocky-stream-nature-photography-2.jpg.jpg",
-            "on-the-hill-mountains-woodland-landscape-photography-2.jpg.jpg",
-            "lakeside-hills-scenic-landscape-photography-3.jpg.jpg",
-            "waterfall-forest-creek-nature-photography-3.jpg.jpg",
-            "on-the-hill-lake-view-landscape-photography-3.jpg.jpg",
+            "lakeside-landscape-mountains-scenic-photography-2.jpg",
+            "waterfall-rocky-stream-nature-photography-2.jpg",
+            "on-the-hill-mountains-woodland-landscape-photography-2.jpg",
+            "lakeside-hills-scenic-landscape-photography-3.jpg",
+            "waterfall-forest-creek-nature-photography-3.jpg",
+            "on-the-hill-lake-view-landscape-photography-3.jpg",
             "candid - landscape - hikers with walking poles and backpacks walking along coastal path with distant lighthouse at Seven Sisters.jpg",
-            "on-the-hill-shoreline-mountains-landscape-photography-4.jpg.jpg",
+            "on-the-hill-shoreline-mountains-landscape-photography-4.jpg",
             "candid - landscape - historic castle tower - timber framed Tudor house - waterfront brick wall (1 of 1).jpg",
-            "lakeside-sailboat-reflection-landscape-photography-5.jpg.jpg",
-            "waterfall-woodland-cascades-nature-photography-5.jpg.jpg",
+            "lakeside-sailboat-reflection-landscape-photography-5.jpg",
+            "waterfall-woodland-cascades-nature-photography-5.jpg",
             "candid - landscape - historic coastguard cottages in foreground with person walking near wooden gate and Seven Sisters cliffs in background.jpg",
-            "lakeside-shoreline-trees-landscape-photography-6.jpg.jpg",
+            "lakeside-shoreline-trees-landscape-photography-6.jpg",
             "candid - landscape - lone figure standing on edge of dramatic white chalk cliff at Seven Sisters.jpg",
-            "lakeside-pathway-hills-scenic-photography-7.jpg.jpg",
+            "lakeside-pathway-hills-scenic-photography-7.jpg",
             "candid - landscape - person with hat - standing - historic barn - corrugated shed - fence - trees (1 of 1).jpg",
-            "lakeside-woodland-view-landscape-photography-8.jpg.jpg",
+            "lakeside-woodland-view-landscape-photography-8.jpg",
             "candid - landscape - small group of people standing near edge of high cliff overlooking the sea with distant sailboat.jpg",
-            "lakeside-ripples-water-texture-photography-9.jpg.jpg",
+            "lakeside-ripples-water-texture-photography-9.jpg",
             "candid - landscape - woman - walking - grass - historic timber framed buildings (1 of 1).jpg",
             "candid - landscape - woman carrying backpack and walking down coastal path with hikers and Seven Sisters cliffs in background.jpg",
             "candid - portrait - woman holding black parasol and vintage camera standing on coastal path near wire fence.jpg",
@@ -212,7 +199,6 @@ HTML
         ];
 
         const streetFiles = [
-            // Strongest narrative & newly added untitled street highlights positioned first
             "untitled (1 of 1).jpg",
             "untitled (12 of 1).jpg",
             "untitled (3 of 1).jpg",
@@ -251,7 +237,6 @@ HTML
             "untitled (34 of 1).jpg",
             "untitled (35 of 1).jpg",
             "untitled (38 of 1).jpg",
-            // Classic documentary and urban portfolio pieces
             "candid - alleyway - woman smoking cigarette next to rubbish bins - framed by ornate metal gate in Arundel.jpg",
             "candid - beach - stroll - coastal - documentary - photography - bognor - regis (1 of 1).jpg",
             "candid - interior - cathedral nave - woman walking in sunlight - stone columns - stained glass windows (1 of 1).jpg",
@@ -297,16 +282,25 @@ HTML
             "urban - street - style - photography - notting - hill (1 of 1).jpg"
         ];
 
+        function handleImgError(img) {
+            let src = img.getAttribute('src');
+            if (src.includes('images/')) {
+                img.src = src.replace('images/', '');
+            } else if (!src.endsWith('.jpg.jpg')) {
+                img.src = src.replace('.jpg', '.jpg.jpg');
+            }
+        }
+
         const landscapeHTML = landscapeFiles.map(file => `
-            <div class="gallery-item" onclick="openLightbox('images/${file}')">
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async">
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="handleImgError(this)">
                 <div class="watermark-text">&copy; Trogerism Photography</div>
             </div>
         `).join('');
 
         const streetHTML = streetFiles.map(file => `
-            <div class="gallery-item" onclick="openLightbox('images/${file}')">
-                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async">
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="images/${file}" alt="Trogerism Photography" loading="lazy" decoding="async" onerror="handleImgError(this)">
                 <div class="watermark-text">&copy; Trogerism Photography</div>
             </div>
         `).join('');
